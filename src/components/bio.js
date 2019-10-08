@@ -58,9 +58,9 @@ const Bio = () => {
         Personal blog by <a href={`https://twitter.com/${social.twitter}`}>
           {author}
         </a>.
-        <div>
+        <span style={{ display: 'block' }}>
           {moto}.
-        </div>
+        </span>
       </p>
     </div>
   )

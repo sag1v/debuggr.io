@@ -2,7 +2,7 @@
 title: JavaScript - The "this" key word in depth
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/ug57gkto2sados5lbx7f.png
 published: true
-description: In this article we will learn how to identify and recognize what `this` refers to in a given context.
+description: Follow these 5 rules to determine what “this” is bound to.
 tags: javascript, webdev, node, frontend
 ---
 
