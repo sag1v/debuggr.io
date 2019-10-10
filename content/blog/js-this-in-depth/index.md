@@ -1,7 +1,7 @@
 ---
 title: JavaScript - The "this" key word in depth
+date: "2019-08-21"
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/ug57gkto2sados5lbx7f.png
-published: true
 description: Follow these 5 rules to determine what “this” is bound to.
 tags: javascript, webdev, node, frontend
 ---
@@ -23,7 +23,7 @@ Every time a function is invoked, a new execution context is created and pushed 
 Each execution context contains a "Local variable environment" which usually referred to as the local-scope (or global-scope in the global execution context).
  
 Given this code snippet:
-```javascript{numberLines: true}
+```js
 function foo(){
   var message = 'Hello!';
   console.log(message);
@@ -34,7 +34,7 @@ foo()
 Just by looking at `foo`'s declaration, we know what scope `message` belongs to - the local scope of the `foo` function execution-context. Because `var` statement [declares a function-scoped variable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var).
 
 Another example:
-```javascript{numberLines: true}
+```js
 function foo(){
   var message = 'Hello';
   {
@@ -57,7 +57,7 @@ If static means "**Where** something **WAS** declared", we might say dynamic mea
 
 Lets imagine for a moment that scope was dynamic in JavaScript:
 _note, this is not a real syntax_ ⚠️
-```javascript{numberLines: true}
+```js
 function foo(){
   // not a real syntax!!! ⚠️
   let message = if(foo in myObj) "Hello" else "There"
@@ -78,7 +78,7 @@ It may look strange but this is not that far away from the truth when we are dea
 There are some rules, and **order matters**. 
 You know what, lets just write them out as if we are writing the engine ourselves:
 _note, this is not a real syntax_ ⚠️
-```javascript{numberLines: true}
+```javascript
 function foo(){
   // not real syntax!!! ⚠️
   if(foo is ArrowFunction) doNothing;
@@ -136,7 +136,7 @@ The best way to measure our understanding is to test ourselves, so lets do a qui
 _Try to answer what will be printed to the console._
 
 Question #1
-```javascript{numberLines: true}
+```js
 function logThis(){
   console.log(this);
 }
@@ -149,7 +149,7 @@ myObj.logThis()
 ```
 
 Question #2
-```javascript{numberLines: true}
+```js
 function logThis(){
   console.log(this);
 }
@@ -164,7 +164,7 @@ myObj.foo()
 ```
 
 Question #3
-```javascript{numberLines: true}
+```js
 const logThis = () => {
   console.log(this);
 }
@@ -177,7 +177,7 @@ myObj.foo()
 ```
 
 Question #4
-```javascript{numberLines: true}
+```js
 function logThis() {
   console.log(this);
 }
@@ -188,7 +188,7 @@ logThis.apply(myObj)
 ```
 
 Question #5
-```javascript{numberLines: true}
+```js
 const logThis = () => {
   console.log(this);
 }
@@ -199,7 +199,7 @@ logThis.apply(myObj)
 ```
 
 Question #6
-```javascript{numberLines: true}
+```js
 function logThis(){
   console.log(this);
 }
@@ -208,7 +208,7 @@ const someObj = new logThis()
 ```
 
 Question #7
-```javascript{numberLines: true}
+```js
 function logThis(){
   'use strict'
   console.log(this);
@@ -222,7 +222,7 @@ const someObj = new myFunc()
 ```
 
 Question #8
-```javascript{numberLines: true}
+```js
 function logThis(){
   console.log(this);
 }
@@ -238,7 +238,7 @@ myClassInstance.logThat()
 ```
 
 Question #9
-```javascript{numberLines: true}
+```js
 function logThis(){
   console.log(this);
 }
@@ -254,7 +254,7 @@ myClassInstance.logThat()
 ```
 
 Question #10
-```javascript{numberLines: true}
+```js
 class myClass {
   logThis = () => {
     console.log(this);
@@ -269,7 +269,7 @@ myClassInstance.logThis.call(myObj)
 ### Bonus questions
 
 Question #11
-```javascript{numberLines: true}
+```js
 function logThis() {
   console.log(this);
 }
@@ -279,7 +279,7 @@ btn.addEventListener('click', logThis);
 ```
 
 Question #12
-```javascript{numberLines: true}
+```js
 const logThis = () => {
   console.log(this);
 }
@@ -293,7 +293,7 @@ Answers
 ---
 
 Answer #1
-```javascript{numberLines: true}
+```js
 function logThis(){
   console.log(this);
 }
@@ -313,7 +313,7 @@ Explanation:
 * Was `logThis` called as an object method? - Yes, `myObj` is left to the dot.
 
 Answer #2
-```javascript{numberLines: true}
+```js
 function logThis(){
   console.log(this);
 }
@@ -336,7 +336,7 @@ Explanation:
 * default case - `window` (or global).
 
 Answer #3
-```javascript{numberLines: true}
+```js
 const logThis = () => {
   console.log(this);
 }
@@ -352,7 +352,7 @@ Explanation:
 * Is `logThis` an arrow function? - Yes, whatever `this` set in the wrapping context. In this case the wrapping context is the ["Global execution context"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this#Global_context) which inside it `this` refers to the window / global object.
 
 Answer #4
-```javascript{numberLines: true}
+```js
 function logThis() {
   console.log(this);
 }
@@ -368,7 +368,7 @@ Explanation:
 * Was `logThis` called with call / apply / bind? - Yeas, whatever passed in as the first argument - `myObj` in this case.
 
 Answer #5
-```javascript{numberLines: true}
+```js
 const logThis = () => {
   console.log(this);
 }
@@ -382,7 +382,7 @@ Explanation:
 * Is `logThis` an arrow function? - Yes, whatever `this` set in the wrapping context. In this case the wrapping context is the "Global execution context" which inside it `this` refers to the window / global object.
 
 Answer #6
-```javascript{numberLines: true}
+```js
 function logThis(){
   console.log(this);
 }
@@ -395,7 +395,7 @@ Explanation:
 * Was `logThis` called with `new`? - Yes, then `this` is an auto created object inside the function.
 
 Answer #7
-```javascript{numberLines: true}
+```js
 function logThis(){
   'use strict'
   console.log(this);
@@ -416,7 +416,7 @@ Explanation:
 * Is `strict mode` on? - Yes, `this` is `undefined`.
 
 Answer #8
-```javascript{numberLines: true}
+```js
 function logThis(){
   console.log(this);
 }
@@ -440,7 +440,7 @@ Explanation:
 * default case - `window` (or global).
 
 Answer #9
-```javascript{numberLines: true}
+```js
 function logThis(){
   console.log(this);
 }
@@ -466,7 +466,7 @@ Lets check:
   * Was `logThat` called as an object method? - Yes, `this` is the object left to the dot - The auto created object inside `myClass` in this case.
 
 Answer #10
-```javascript{numberLines: true}
+```js
 class myClass {
   logThis = () => {
     console.log(this);
@@ -488,7 +488,7 @@ Lets check what `this` refers to in the wrapping context:
 _note that we are using class fields which is a [proposal currently in stage 3](https://github.com/tc39/proposal-class-fields#class-field-declarations-for-javascript)_
 
 Answer #11
-```javascript{numberLines: true}
+```js
 function logThis() {
   console.log(this);
 }
@@ -508,7 +508,7 @@ Now lets walk through the flow:
 * Was `logThis` called as an object method? - Yes (sort of), in our case `btn` is left to the dot.
 
 Answer #12
-```javascript{numberLines: true}
+```js
 const logThis = () => {
   console.log(this);
 }

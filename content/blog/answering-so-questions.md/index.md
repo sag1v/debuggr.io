@@ -1,6 +1,6 @@
 ---
 title: Answering StackOverflow questions can make you a better programmer
-published: true
+date: "2019-06-29"
 description: ~8 reasons why you should answer StackOverflow questions
 tags: beginners, discuss, career, productivity
 ---
@@ -49,7 +49,9 @@ We also gained experience with debugging, experience with solving (or trying to 
   
 I consider this as a bit of a hack, in a “normal” way, we gain experience through time (x years of experience). So basically experience is measured like
 
-![](https://thepracticaldev.s3.amazonaws.com/i/2y8rvc237fdct7s24axx.png)
+```jsx
+skill.exp = skill.handsOn * skill.numberOfYears
+```
 
 And here we are kind of fast-tracking our hands-on experience through multi-threading, and not from our actual day job. So we are basically gaining the experience of others, and we do it in a relatively short period of time - the power of concurrency (we're scaling our skill set).
 

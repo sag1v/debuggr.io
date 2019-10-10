@@ -24,7 +24,7 @@ const Bio = () => {
       site {
         siteMetadata {
           author
-          moto
+          motto
           social {
             twitter
           }
@@ -33,12 +33,12 @@ const Bio = () => {
     }
   `)
 
-  const { author, social, moto } = data.site.siteMetadata
+  const { author, social, motto } = data.site.siteMetadata
   return (
     <div
       style={{
         display: `flex`,
-        marginBottom: rhythm(2.5),
+        // marginBottom: rhythm(2.5),
       }}
     >
       <Image
@@ -59,7 +59,7 @@ const Bio = () => {
           {author}
         </a>.
         <span style={{ display: 'block' }}>
-          {moto}.
+          {motto}.
         </span>
       </p>
     </div>

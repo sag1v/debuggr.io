@@ -1,6 +1,6 @@
 ---
 title: JavaScript == VS === The truth
-published: true
+date: "2018-08-11"
 description: The truth behind the double and tripple equal in JavaScript
 tags: javascript, equality
 ---

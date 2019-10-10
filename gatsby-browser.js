@@ -1,5 +1,5 @@
 // custom typefaces
 import "typeface-montserrat"
 import "typeface-merriweather"
-import "prismjs/themes/prism-okaidia.css"
-import "./src/global.css"
+// import "prismjs/themes/prism-okaidia.css"
+// import "./src/utils/global.css"

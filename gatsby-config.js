@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `sag1v blog`,
+    title: `Debuggr.io`,
     author: `Sagiv Ben Giat`,
-    description: `Writing about things I learn`,
-    moto: 'I learn, I apply, I share',
+    description: `Sharing some thoughts and stuff I learn`,
+    motto: 'Sharing some thoughts and stuff I learn',
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
     social: {
       twitter: `sag1v`,
@@ -105,6 +105,7 @@ module.exports = {
           },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          '@weknow/gatsby-remark-twitter',
         ],
       },
     },
