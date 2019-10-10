@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `Debuggr.io`,
+    title: `debuggr.io`,
     author: `Sagiv Ben Giat`,
     description: `Sharing some thoughts and stuff I learn`,
     motto: 'Sharing some thoughts and stuff I learn',
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://debuggr.io/`,
     social: {
       twitter: `sag1v`,
       github: 'sag1v',
@@ -121,8 +121,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `sag1v - debuggr.io`,
+        short_name: `debuggr.io`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
