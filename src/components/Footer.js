@@ -1,6 +1,29 @@
 import React from 'react';
-
+import FontAwesome from 'react-fontawesome';
 import { rhythm } from '../utils/typography';
+
+const socialLinks = [
+  { name: 'twitter', url: 'https://mobile.twitter.com/sag1v' },
+  { name: 'github', url: 'https://github.com/sag1v' },
+  { name: 'stack-overflow', url: 'https://stackoverflow.com/users/3148807/sagiv-b-g' },
+  { name: 'medium', url: 'https://medium.com/@sagiv.bengiat' },
+  { name: 'dev', url: 'https://dev.to/sag1v' }
+]
+
+const SocialLink = ({ url, name }) => (
+  <a
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ textDecoration: 'none', boxShadow: 'none', marginRight: '30px' }}
+  >
+    <FontAwesome
+      name={name}
+      size="2x"
+      className="fab"
+    />
+  </a>
+);
 
 class Footer extends React.Component {
   render() {
@@ -11,34 +34,7 @@ class Footer extends React.Component {
           paddingTop: rhythm(1),
         }}
       >
-        <div style={{ float: 'right' }}>
-          <a href="/rss.xml" target="_blank" rel="noopener noreferrer">
-            rss
-          </a>
-        </div>
-        <a
-          href="https://mobile.twitter.com/sag1v"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          twitter
-        </a>{' '}
-        &bull;{' '}
-        <a
-          href="https://github.com/sag1v"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          github
-        </a>{' '}
-        &bull;{' '}
-        <a
-          href="https://stackoverflow.com/users/3148807/sagiv-b-g"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          stack overflow
-        </a>
+        {socialLinks.map(social => <SocialLink key={social.name} {...social} />)}
       </footer>
     );
   }

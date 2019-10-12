@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
+import Img from "gatsby-image"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -10,24 +10,28 @@ import { formatReadingTime } from '../utils/helpers'
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
+    const { frontmatter } = post;
+
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
+    const featuredImgFluid = frontmatter.featuredImage && frontmatter.featuredImage.childImageSharp.fluid;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
-          title={post.frontmatter.title}
-          description={post.frontmatter.description || post.excerpt}
+          title={frontmatter.title}
+          description={frontmatter.description || post.excerpt}
         />
         <article>
           <header>
+            {featuredImgFluid && <Img fluid={featuredImgFluid} />}
             <h1
               style={{
                 marginTop: rhythm(1),
                 marginBottom: 0,
               }}
             >
-              {post.frontmatter.title}
+              {frontmatter.title}
             </h1>
             <p
               style={{
@@ -37,7 +41,7 @@ class BlogPostTemplate extends React.Component {
               }}
             >
               <span>
-                {post.frontmatter.date}
+                {frontmatter.date}
               </span>
               {` - `}
               {formatReadingTime(post.timeToRead)}
@@ -104,6 +108,13 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        featuredImage {
+          childImageSharp {
+            fluid(maxWidth: 800) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

@@ -1,7 +1,7 @@
 ---
 title: JavaScript - The "this" key word in depth
 date: "2019-08-21"
-cover_image: https://thepracticaldev.s3.amazonaws.com/i/ug57gkto2sados5lbx7f.png
+featuredImage: ./cover.png
 description: Follow these 5 rules to determine what “this” is bound to.
 tags: javascript, webdev, node, frontend
 ---

@@ -2,6 +2,7 @@
 title: React Micro Frontends
 date: "2018-11-17"
 description: Integrate React with other applications and frameworks
+featuredImage: './cover.png'
 tags: javascript, micro-frontends, react, frontend
 ---
 
@@ -734,8 +735,8 @@ class ReactCounter extends PureComponent {
 export default ReactCounter;
 ```
 
-Look how clean and concise it is.
-*note that we are using a [React. PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent) here, you **may** need a regular `React. Component`.*
+Look how clean and concise it is.  
+_note that we are using a [React. PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent) here, you **may** need a regular `React. Component`_.
 
 Lets look on how `App.js` is using this new component:  
 *Don’t forget to import the component*

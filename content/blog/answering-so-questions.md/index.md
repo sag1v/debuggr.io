@@ -2,6 +2,7 @@
 title: Answering StackOverflow questions can make you a better programmer
 date: "2019-06-29"
 description: ~8 reasons why you should answer StackOverflow questions
+featuredImage: './cover.png'
 tags: beginners, discuss, career, productivity
 ---
 

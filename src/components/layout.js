@@ -1,8 +1,22 @@
 import React from "react"
 import { Link } from "gatsby"
-
+import "@fortawesome/fontawesome-free/css/all.css";
 import { rhythm, scale } from "../utils/typography"
 import Footer from './Footer';
+
+const Title = ({ children }) => (
+  <Link
+    style={{
+      boxShadow: `none`,
+      textDecoration: `none`,
+      color: `inherit`,
+      borderBottom: '3px solid #E91E63',
+    }}
+    to={`/`}
+  >
+    {children}
+  </Link>
+);
 
 class Layout extends React.Component {
   render() {
@@ -19,16 +33,7 @@ class Layout extends React.Component {
             marginTop: 0,
           }}
         >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
+          <Title>{title}</Title>
         </h1>
       )
     } else {
@@ -39,32 +44,26 @@ class Layout extends React.Component {
             marginTop: 0,
           }}
         >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
+          <Title>{title}</Title>
         </h3>
       )
     }
     return (
-      <div
-        style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-          maxWidth: rhythm(24),
-          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-        }}
-      >
-        <header>{header}</header>
-        <main>{children}</main>
-        <Footer />
-      </div>
+      <React.Fragment>
+        {/* <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> */}
+        <div
+          style={{
+            marginLeft: `auto`,
+            marginRight: `auto`,
+            maxWidth: rhythm(24),
+            padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+          }}
+        >
+          <header>{header}</header>
+          <main>{children}</main>
+          <Footer />
+        </div>
+      </React.Fragment>
     )
   }
 }

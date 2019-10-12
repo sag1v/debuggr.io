@@ -2,6 +2,7 @@
 title: Redux is dead! long live react’s context API(?)
 date: "2015-07-25"
 description: Can we really compare react's context with redux?
+featuredImage: './cover.png'
 tags: javascript, redux, react, frontend
 ---
 
@@ -30,7 +31,7 @@ It is impossible to compare the two, you know what? let’s try.
 
 ## Trial #1 — `Redux` Vs The new context API
 
-* **`Redux` **is a state-manager, it helps you manage a big JavaScript object that holds the state of your application.
+* **`Redux`** is a state-manager, it helps you manage a big JavaScript object that holds the state of your application.
 It’s doing it with style though, in a beautiful functional way with pure functions (reducers), plain and serializable objects as actions, great middle-ware support and an amazing pub/sub architecture.
 By the way, `Redux` has nothing to do with react. OK, one of the authors of `Redux` is working at facebook and surprisingly at the react team. but really, `Redux` has no opinions about which framework or library you should use.
 You can use it with AngularJS or Angular10, you can use it with jQuery or vanilla JS, you can even use it with react! Its “just” a javascript state-manager library.
@@ -39,8 +40,8 @@ Actually let’s quote the [docs](https://redux.js.org/):
 
 * **The new context API** is not even a new feature in react, it was there the whole time and it just got a new face. Well a new **A**pplication-**P**rogram-**I**nterface. Think of it for a moment, if it’s not new why people compare it now? (OK maybe it was a taboo :) )
 Don’t get me wrong, it’s a great improvement for the API (using the [render props](https://reactjs.org/docs/render-props.html)) and a very important feature, but it’s not a new feature.
-It allows you to expose data as a **Provider **(remember this word, we will bump into it again later on) and allows you as a **Consumer **to get a hold of this data.
-Now get this, no matter how deeply nested the **Consumer **is as a child component it has access to the Provider’s data as if it is **connected **to it. This means you can pass data from a parent to a great-grandchild without the use of props.
+It allows you to expose data as a **Provider** (remember this word, we will bump into it again later on) and allows you as a **Consumer** to get a hold of this data.
+Now get this, no matter how deeply nested the **Consumer** is as a child component it has access to the Provider’s data as if it is **connected** to it. This means you can pass data from a parent to a great-grandchild without the use of props.
 It enables you to dodge the bullet of [prop drilling](https://blog.kentcdodds.com/prop-drilling-bb62e02cb691), and the best thing about the new context API is that you wont pay the price of magical data that popped out from nowhere (well, mostly).
 So basically, react’s context feature is really just another way to pass data down to children.
 
@@ -50,7 +51,7 @@ Well we are trying to compare a “State manager for JavaScript applications” 
 
 We are trying to compare a Car with a Wheel, Impossible to compare the two.
 
-**Provider**, **Consumer**, passing down data no matter how deeply nested, **connect **them together…. Did we actually want to compare [react-redux](https://redux.js.org/basics/usage-with-react) with the new context API and not `Redux` itself?
+**Provider**, **Consumer**, passing down data no matter how deeply nested, **connect** them together…. Did we actually want to compare [react-redux](https://redux.js.org/basics/usage-with-react) with the new context API and not `Redux` itself?
 
 Well lets try…
 
@@ -59,27 +60,24 @@ Well lets try…
 * react-redux is an abstraction, a way to bind your `Redux` store to react.
 Let’s remember what we need to do in order to bind `Redux` to react without react-redux.
 in order to bind `Redux` to react you need to do couple of things:
-1. **The first **is not really directly related to react, I’m talking about the subscription to the store with the [store.subscribe()](https://redux.js.org/api-reference/store#subscribe-listener) method, this is done inside a [Container component](https://redux.js.org/basics/usage-with-react#implementing-container-components).
+1. **The first** is not really directly related to react, I’m talking about the subscription to the store with the [store.subscribe()](https://redux.js.org/api-reference/store#subscribe-listener) method, this is done inside a [Container component](https://redux.js.org/basics/usage-with-react#implementing-container-components).
 2. **The second** is to pass the store object down the tree as a prop up until you get to the **Container** component that holds the subscription logic (it needs the actual store object to run methods like subscribe, dispatch etc…)
 WoooHaaa, prop drilling!
 
 OK, so basically react-redux is doing all of this for us (and probably doing a better job than we would do [performance wise](https://redux.js.org/basics/usage-with-react#presentational-and-container-components)).
 
-* **The connect HOC
-**A High Order Component that creates the **Container Component** for us with all the subscription logic + great functions to pass portions of the store and action-creators to its children as props (mapStateToProps & mapDispatchToProps).
+* **The connect HOC**  
+A High Order Component that creates the **Container Component** for us with all the subscription logic + great functions to pass portions of the store and action-creators to its children as props (mapStateToProps & mapDispatchToProps).
 
-* **Provider
-**A Component that will hold and pass down our store.
+* **Provider**  
+A Component that will hold and pass down our store.
 
-WAIT! how exactly the **Provider **and the **connect HOC **are connected? how is the data being passed from the **Provider **to the **Container?**
+WAIT! how exactly the **Provider** and the **connect HOC** are connected? how is the data being passed from the **Provider** to the **Container?**
 
 This is where react’s context API plays a big and important role,
-The **Provider **is exposing the store as a context.
+The **Provider** is exposing the store as a context.
 The **Container** created by **connect** is grabbing this context.
 Yes, via the context API.
-
-*Note: as for the date this post was written, react-redux is using the [**legacy context API](https://reactjs.org/docs/legacy-context.html)**. *
-*spooky…*
 
 So lets say that react’s context feature is like 10% - 20% of the logic react-redux is doing for us.
 
