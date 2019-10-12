@@ -10,7 +10,7 @@ import { rhythm, scale } from "../utils/typography"
 
 const sharePlatforms = ['twitter', 'facebook', 'linkedIn', 'clipboard']
 
-const ShareSection = ({ url, postName }) => (
+const ShareSection = ({ path, postName }) => (
   <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '40px' }}>
     <div>
       Share this article
@@ -18,7 +18,7 @@ const ShareSection = ({ url, postName }) => (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       {sharePlatforms.map(platform => (
         <div key={platform} style={{ marginRight: '25px' }}>
-          <ShareButton platform={platform} url={url} postName={postName} />
+          <ShareButton platform={platform} path={path} postName={postName} />
         </div>
       ))}
     </div>
@@ -27,15 +27,16 @@ const ShareSection = ({ url, postName }) => (
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
+    const { pageContext, location, data } = this.props;
+    const post = data.markdownRemark
     const { frontmatter } = post;
 
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+    const siteTitle = data.site.siteMetadata.title
+    const { previous, next } = pageContext
     const featuredImgFluid = frontmatter.featuredImage && frontmatter.featuredImage.childImageSharp.fluid;
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={location} title={siteTitle}>
         <SEO
           title={frontmatter.title}
           description={frontmatter.description || post.excerpt}
@@ -71,7 +72,7 @@ class BlogPostTemplate extends React.Component {
               marginBottom: rhythm(1),
             }}
           />
-          <ShareSection url={this.props.location.href} postName={frontmatter.title} />
+          <ShareSection path={`${location.pathname}${location.search}`} postName={frontmatter.title} />
           <footer>
             <Bio />
           </footer>

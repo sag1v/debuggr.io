@@ -92,8 +92,8 @@ const CopyUrlButton = ({ url }) => {
     );
 }
 
-function ShareButton({ platform, url = '', postName }) {
-    url = url.replace('localhost:8000', 'debuggr.io');
+function ShareButton({ platform, path, postName }) {
+    const prodURL = `https://debuggr.io${path}`;
     let Component;
     switch (platform) {
         case 'twitter':
@@ -114,7 +114,7 @@ function ShareButton({ platform, url = '', postName }) {
             throw new Error(`Unsupported platform ${platform}`);
     }
 
-    return <Component url={url} postName={postName} />
+    return <Component url={prodURL} postName={postName} />
 }
 
 export default ShareButton;
