@@ -92,7 +92,7 @@ const CopyUrlButton = ({ url }) => {
     );
 }
 
-function ShareButton({ platform, url, postName }) {
+function ShareButton({ platform, url = '', postName }) {
     url = url.replace('localhost:8000', 'debuggr.io');
     let Component;
     switch (platform) {
