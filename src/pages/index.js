@@ -5,13 +5,13 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
-import { formatReadingTime } from '../utils/helpers'
+import ReadingTime from '../components/ReadingTime'
 
 class BlogIndex extends React.Component {
   render() {
     const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+    const siteTitle = data.site.siteMetadata.title;
+    const posts = data.allMarkdownRemark.edges;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -34,7 +34,7 @@ class BlogIndex extends React.Component {
                 <small>
                   {node.frontmatter.date}
                   {` - `}
-                  {formatReadingTime(node.timeToRead)}
+                  <ReadingTime minutes={node.timeToRead} />
                 </small>
               </header>
               <section>

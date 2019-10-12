@@ -3,9 +3,27 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
+import ReadingTime from "../components/ReadingTime"
+import ShareButton from '../components/ShareButton';
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
-import { formatReadingTime } from '../utils/helpers'
+
+const sharePlatforms = ['twitter', 'facebook', 'linkedIn', 'clipboard']
+
+const ShareSection = ({ url, postName }) => (
+  <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '40px' }}>
+    <div>
+      Share this article
+  </div>
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
+      {sharePlatforms.map(platform => (
+        <div key={platform} style={{ marginRight: '25px' }}>
+          <ShareButton platform={platform} url={url} postName={postName} />
+        </div>
+      ))}
+    </div>
+  </div>
+)
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -44,7 +62,7 @@ class BlogPostTemplate extends React.Component {
                 {frontmatter.date}
               </span>
               {` - `}
-              {formatReadingTime(post.timeToRead)}
+              <ReadingTime minutes={post.timeToRead} />
             </p>
           </header>
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -53,6 +71,7 @@ class BlogPostTemplate extends React.Component {
               marginBottom: rhythm(1),
             }}
           />
+          <ShareSection url={this.props.location.href} postName={frontmatter.title} />
           <footer>
             <Bio />
           </footer>

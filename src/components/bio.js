@@ -11,6 +11,16 @@ import Image from "gatsby-image"
 
 import { rhythm } from "../utils/typography"
 
+const Author = ({ children, url }) => (
+  <a
+    target="_blank"
+    rel="noopener noreferrer"
+    href={url}
+  >
+    {children}
+  </a>
+);
+
 const Bio = () => {
   const data = useStaticQuery(graphql`
     query BioQuery {
@@ -55,9 +65,7 @@ const Bio = () => {
         }}
       />
       <p>
-        Personal blog by <a href={`https://twitter.com/${social.twitter}`}>
-          {author}
-        </a>.
+        Personal blog by <Author url={`https://mobile.twitter.com/${social.twitter}`}>{author}</Author>.
         <span style={{ display: 'block' }}>
           {motto}.
         </span>

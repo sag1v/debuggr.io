@@ -25,19 +25,17 @@ const SocialLink = ({ url, name }) => (
   </a>
 );
 
-class Footer extends React.Component {
-  render() {
-    return (
-      <footer
-        style={{
-          marginTop: rhythm(2.5),
-          paddingTop: rhythm(1),
-        }}
-      >
-        {socialLinks.map(social => <SocialLink key={social.name} {...social} />)}
-      </footer>
-    );
-  }
+function Footer() {
+  return (
+    <footer
+      style={{
+        marginTop: rhythm(2.5),
+        paddingTop: rhythm(1),
+      }}
+    >
+      {socialLinks.map(social => <SocialLink key={social.name} {...social} />)}
+    </footer>
+  );
 }
 
 export default Footer;
