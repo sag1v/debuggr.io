@@ -1,22 +1,9 @@
 import React from "react"
-import { Link } from "gatsby"
 import "@fortawesome/fontawesome-free/css/all.css";
 import { rhythm, scale } from "../utils/typography"
 import Footer from './Footer';
+import Title from './Title';
 
-const Title = ({ children }) => (
-  <Link
-    style={{
-      boxShadow: `none`,
-      textDecoration: `none`,
-      color: `inherit`,
-      borderBottom: '3px solid #E91E63',
-    }}
-    to={`/`}
-  >
-    {children}
-  </Link>
-);
 
 class Layout extends React.Component {
   render() {

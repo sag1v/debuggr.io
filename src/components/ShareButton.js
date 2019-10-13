@@ -6,7 +6,7 @@ const NewTabLink = ({ children, style, ...rest }) => (
     <a
         target="_blank"
         rel="noopener noreferrer"
-        style={{ boxShadow: 'none', textDecoration: 'none', color: '#333', ...style }}
+        style={{ boxShadow: 'none', textDecoration: 'none', ...style }}
         {...rest}
     >
         {children}
@@ -51,6 +51,7 @@ const CopyUrlButton = ({ url }) => {
     const timerIdRef = useRef(null);
 
     function copyToClipboard(e) {
+        e.preventDefault()
         fakeElementRef.current.select();
         document.execCommand('copy');
         setIsCopied(true);
@@ -77,7 +78,9 @@ const CopyUrlButton = ({ url }) => {
                 value={url}
                 style={{ height: 0, width: 0, opacity: 0, overflow: 'hidden' }}
             />
-            <FontAwesome name="copy" />
+            <NewTabLink href="#">
+                <FontAwesome name="copy" />
+            </NewTabLink>
             <div
                 style={{
                     transition: 'all 500ms ease-in-out',
