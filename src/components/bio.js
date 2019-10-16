@@ -65,7 +65,7 @@ const Bio = () => {
         }}
       />
       <p>
-        Personal blog by <Author url={`https://mobile.twitter.com/${social.twitter}`}>{author}</Author>.
+        Written by <Author url={`https://mobile.twitter.com/${social.twitter}`}>{author}</Author>.
         <span style={{ display: 'block' }}>
           {motto}.
         </span>

@@ -2,8 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `debuggr.io`,
     author: `Sagiv Ben Giat`,
-    description: `Sharing some thoughts and stuff I learn`,
-    motto: 'Sharing some thoughts and stuff I learn',
+    description: `A Personal blog by Sagiv Ben Giat`,
+    motto: 'I share my thoughts and learnings',
     siteUrl: `https://debuggr.io/`,
     social: {
       twitter: `sag1v`,
@@ -12,6 +12,7 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
