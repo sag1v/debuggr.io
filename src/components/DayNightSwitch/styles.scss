@@ -32,6 +32,11 @@
 .wrapper {
   display: flex;
   width: auto;
+  align-self: center;
+
+  &:focus{
+      outline: none;
+  }
 }
 
 /////////////////////////////////////////////////
@@ -41,7 +46,7 @@
   position: relative;
   display: inline-block;
   width: 65px;
-  padding: 4px;
+  padding: 10px 0;
   border-radius: 40px;
 }
 
@@ -83,7 +88,7 @@
 .toggle-switch {
   cursor: pointer;
   position: relative;
-  top: 2px;
+  top: 0px;
   width: 12px;
   height: 12px;
   margin-left: 42px;
@@ -117,8 +122,8 @@
 .toggle-switch-figureAlt {
   @include crater(7px, 0, 2px);
 
-  box-shadow: 84px -16px 3px 0px #fcfcfc, 60px -15px 6px 1px #fcfcfc, 88px 6px 5px 1px #fcfcfc,
-    95px -7px 4px 2px #fcfcfc, 35px 4px 4px 2px #fcfcfc, 52px -1px 4px 0px #fcfcfc, 75px -1px 4px 1px #fcfcfc;
+  box-shadow: 74px -16px 3px 0px #fcfcfc, 50px -15px 6px 1px #fcfcfc, 78px 6px 5px 1px #fcfcfc,
+    85px -7px 4px 2px #fcfcfc, 32px 4px 4px 2px #fcfcfc, 42px -1px 4px 0px #fcfcfc, 65px -1px 4px 1px #fcfcfc;
 
   transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transform: scale(0);
@@ -133,7 +138,7 @@
 // Night State
 /////////////////////////////////////////////////
 .toggle-input:checked ~ .toggle-switch {
-  margin-left: 2px;
+  margin-left: 10px;
   // border-color: #DEE1C5;
   box-shadow: 0 0 5px 1px #fff;
   background-color: #fffdf2;

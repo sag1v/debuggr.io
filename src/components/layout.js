@@ -17,10 +17,11 @@ function Layout(props) {
   let header
 
   if (location.pathname === rootPath) {
+    // home page
     header = (
       <h1
         style={{
-          ...scale(1.3),
+          ...scale(0.8),
           marginBottom: 0, //rhythm(1.5),
           marginTop: 0,
         }}
