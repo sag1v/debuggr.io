@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
+import Helmet from 'react-helmet';
 import "@fortawesome/fontawesome-free/css/all.css";
 import { rhythm, scale } from "../utils/typography"
 import Footer from './Footer';
 import Title from './Title';
 import DayNightSwitch from './DayNightSwitch';
-import '../utils/global.css'; 
+import '../utils/global.css';
+
+// needs to be in sync with global.css vars
+const darkBg =  '#323232';
+const lightBg = '#fff';
 
 function Layout(props) {
   const [darkModeOn, setDarkMode] = useState(false);
@@ -56,6 +61,14 @@ function Layout(props) {
   }
   return (
     <React.Fragment>
+      <Helmet
+        meta={[
+          {
+            name: 'theme-color',
+            content: darkModeOn === 'light' ? lightBg : darkBg,
+          },
+        ]}
+      />
       <div
         style={{
           marginLeft: `auto`,
