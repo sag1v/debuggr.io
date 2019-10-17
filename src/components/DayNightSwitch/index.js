@@ -11,6 +11,7 @@ function DayNightSwitch({ checked, onChange }) {
                     type="checkbox"
                     checked={checked}
                     onChange={onChange}
+                    aria-label="Switch between Dark and Light mode"
                 />
                 <div className="toggle-bg" />
                 <div className="toggle-switch">

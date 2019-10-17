@@ -34,8 +34,8 @@
   width: auto;
   align-self: center;
 
-  &:focus{
-      outline: none;
+  &:focus {
+    outline: none;
   }
 }
 
@@ -68,7 +68,7 @@
   height: 100%;
   background-color: #c0e6f6;
   border-radius: 40px;
-  border: 4px solid #81c0d5;
+  box-shadow: 0 0 2px 3px #81c0d5;
   transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -150,7 +150,7 @@
 
 .toggle-input:checked ~ .toggle-bg {
   background-color: #484848;
-  border-color: #343434;
+  box-shadow: 0 0 2px 3px #6b6b6b;
 }
 
 .toggle-input:checked ~ .toggle-switch .toggle-switch-figure {
