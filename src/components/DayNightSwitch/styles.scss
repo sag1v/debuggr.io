@@ -157,7 +157,7 @@
 .toggle-input:checked ~ .toggle-switch .toggle-switch-figure {
   margin-left: 40px;
   opacity: 0;
-  transform: scale(0.1);
+  transform: scale(0);
 }
 
 .toggle-input:checked ~ .toggle-switch .toggle-switch-figureAlt {
