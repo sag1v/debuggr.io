@@ -132,7 +132,7 @@ module.exports = {
         short_name: `debuggr.io`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
+        theme_color: `#1681d5`,
         display: `minimal-ui`,
         icon: `content/assets/debuggrLogo.png`,
       },
