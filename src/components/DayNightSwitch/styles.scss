@@ -33,6 +33,7 @@
   display: flex;
   width: auto;
   align-self: center;
+  overflow: hidden;
 
   &:focus {
     outline: none;
