@@ -65,7 +65,7 @@ function Layout(props) {
         meta={[
           {
             name: 'theme-color',
-            content: darkModeOn === 'light' ? lightBg : darkBg,
+            content: darkModeOn ? darkBg : lightBg,
           },
         ]}
       />
