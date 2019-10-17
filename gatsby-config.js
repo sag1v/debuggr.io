@@ -3,7 +3,7 @@ module.exports = {
     title: `debuggr.io`,
     author: `Sagiv Ben Giat`,
     description: `A Personal blog by Sagiv Ben Giat`,
-    motto: 'I share my thoughts and learnings',
+    motto: 'Code, Thoughts & Opinions',
     siteUrl: `https://debuggr.io/`,
     social: {
       twitter: `sag1v`,
