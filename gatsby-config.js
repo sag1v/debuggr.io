@@ -198,7 +198,7 @@ module.exports = {
               }
             `,
             output: '/rss.xml',
-            title: "Sagiv Ben Giat's debuggr.io Blog RSS Feed",
+            title: "debuggr.io",
           },
         ],
       },
