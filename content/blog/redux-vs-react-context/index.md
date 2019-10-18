@@ -1,6 +1,6 @@
 ---
 title: Redux is dead! long live react’s context API(?)
-date: "2015-07-25"
+date: "2018-07-25"
 description: Can we really compare react's context with redux?
 featuredImage: './cover.png'
 tags: javascript, redux, react, frontend
