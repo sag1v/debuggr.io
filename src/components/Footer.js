@@ -7,10 +7,11 @@ const socialLinks = [
   { name: 'github', url: 'https://github.com/sag1v' },
   { name: 'stack-overflow', url: 'https://stackoverflow.com/users/3148807/sagiv-b-g' },
   { name: 'medium', url: 'https://medium.com/@sagiv.bengiat' },
-  { name: 'dev', url: 'https://dev.to/sag1v' }
+  { name: 'dev', url: 'https://dev.to/sag1v' },
+  { name: 'rss-square', url: '/rss.xml', notSocial: true }
 ]
 
-const SocialLink = ({ url, name }) => (
+const SocialLink = ({ url, name, notSocial }) => (
   <a
     href={url}
     target="_blank"
@@ -20,7 +21,7 @@ const SocialLink = ({ url, name }) => (
     <FontAwesome
       name={name}
       size="2x"
-      className="fab"
+      className={notSocial ? "" : "fab"}
     />
   </a>
 );

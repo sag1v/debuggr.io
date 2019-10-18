@@ -11,6 +11,7 @@ module.exports = {
       stackOverflow: 'sagiv.bg'
     },
   },
+  pathPrefix: '/',
   plugins: [
     `gatsby-plugin-sass`,
     {
@@ -49,6 +50,7 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
+          'gatsby-remark-autolink-headers',
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -113,6 +115,12 @@ module.exports = {
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
           '@weknow/gatsby-remark-twitter',
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+            },
+          },
         ],
       },
     },
@@ -147,5 +155,6 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    `gatsby-plugin-catch-links`,
   ],
 }
