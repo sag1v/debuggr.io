@@ -126,9 +126,9 @@ function Form() {
 
   return (
     <div>
-      <h1>Contact</h1>
+      <h1>Subscribe</h1>
       <form
-        name="contact"
+        name="subscribe"
         method="post"
         action="/thanks/"
         data-netlify="true"
@@ -136,7 +136,7 @@ function Form() {
         onSubmit={handleSubmit}
       >
         {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-        <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="form-name" value="subscribe" />
         <p hidden>
           <label>
             Don’t fill this out: <input name="bot-field" onChange={handleChange} />
@@ -157,14 +157,7 @@ function Form() {
           </label>
         </p>
         <p>
-          <label>
-            Message:
-            <br />
-            <textarea name="message" onChange={handleChange} />
-          </label>
-        </p>
-        <p>
-          <button type="submit">Send</button>
+          <button type="submit">Subscribe</button>
         </p>
       </form>
     </div>
