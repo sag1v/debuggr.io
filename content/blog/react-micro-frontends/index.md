@@ -1,7 +1,7 @@
 ---
 title: React Micro Frontends
 date: "2018-11-17"
-description: Integrate React with other applications and frameworks
+description: Allow a react application to be part of a micro frontends architecture
 featuredImage: './cover.png'
 tags: javascript, micro-frontends, react, frontend
 ---
