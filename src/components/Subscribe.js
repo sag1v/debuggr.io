@@ -42,7 +42,7 @@ function Subscribe() {
         <div className="subscription-container">
             <div className="subscription-title">
                 <h3>Keep in touch</h3>
-                <div>Subscribe to get the latest posts by E-mail</div>
+                <div>Subscribe to get the latest posts by Email</div>
                 <div className="title-image">
                     <img src={logo} alt="debuggr.io logo" />
                     <FontAwesome name="paper-plane" size="lg" className="icon-move" />
@@ -53,8 +53,8 @@ function Subscribe() {
             <div className="subscription-form-wrapper">
 
                 <form onSubmit={handleSubmit}>
-                    <Field required name="name" type="text" value={form.name} placeholder="You name" onChange={handleChange} />
-                    <Field required name="email" type="email" value={form.email} placeholder="You E-mail" onChange={handleChange} />
+                    <Field required name="name" type="text" value={form.name} placeholder="Your name" onChange={handleChange} />
+                    <Field required name="email" type="email" value={form.email} placeholder="Your E-mail" onChange={handleChange} />
                     <button className="submit-btn">Subscribe</button>
                 </form>
                 <div>
