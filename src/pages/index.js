@@ -6,6 +6,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 import ReadingTime from '../components/ReadingTime'
+import Subscribe from "../components/Subscribe"
 
 class BlogIndex extends React.Component {
   render() {
@@ -47,6 +48,7 @@ class BlogIndex extends React.Component {
             </article>
           )
         })}
+        <Subscribe />
       </Layout>
     )
   }

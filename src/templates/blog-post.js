@@ -8,6 +8,7 @@ import ShareButton from '../components/ShareButton';
 import Title from '../components/Title';
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
+import Subscribe from "../components/Subscribe"
 const sharePlatforms = ['twitter', 'facebook', 'linkedIn', 'clipboard']
 
 const ShareSection = ({ path, postName }) => (
@@ -73,6 +74,7 @@ class BlogPostTemplate extends React.Component {
             }}
           />
           <ShareSection path={`${location.pathname}${location.search}`} postName={frontmatter.title} />
+          <Subscribe />
           <footer>
             <h3>
               <Title>{siteTitle}</Title>

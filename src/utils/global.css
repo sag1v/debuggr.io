@@ -1,14 +1,18 @@
 :root {
   --darkBg: #323232;
   --lightBg: #fff;
-  --textLink: #1681d5;
+  --textLighter: #6bd1ff;
+  --themeColor: #2492e6;
   --hr: hsla(0, 0%, 100%, 0.2);
+  --danger: #e91e63;
 }
 
 body {
   --bg: var(--lightBg);
+  --invertedColor: var(--darkBg);
   --imgBg: var(--lightBg);
   --textNormal: #222;
+  --textLink: var(--themeColor);
   --textTitle: #222;
   --inlineCode-bg: #fff9c4;
   --inlineCode-text: #1a1a1a;
@@ -18,15 +22,16 @@ body {
 }
 
 body.dark {
-  --textLink: #6bd1ff;
-  -webkit-font-smoothing: antialiased;
   --bg: var(--darkBg);
+  --invertedColor: var(--lightBg);
   --imgBg: var(--lightBg);
   --textNormal: rgba(255, 255, 255, 0.88);
+  --textLink: var(--textLighter);
   --textTitle: #ffffff;
   --inlineCode-bg: #505050;
   --inlineCode-text: #e9e9e9;
   color: #fff;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* #region tweaking code blocks (based on Remy Bach, Sarah Drasner and Dan Abramov) */
@@ -226,15 +231,160 @@ img {
   margin: 35px 0;
 }
 
-.bio-separator{
-  background-color: var(--textLink);
-  width: 3px;
-  height: 60px;
-  margin: 0 15px;
+.bio-avatar {
+  margin-bottom: 0;
+  min-width: 50px;
+  border-radius: 100%;
+  margin-right: 10px;
 }
 
 .bio-text {
   margin-bottom: 0;
+}
+
+.subscription-container {
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  color: var(--darkBg);
+  box-shadow: 0 0 4px 0px var(--invertedColor);
+  overflow: hidden;
+  --padding: 35px;
+  font-weight: 100;
+  margin: 50px 0;
+}
+
+.subscription-container h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 10px 0;
+}
+
+.subscription-title {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #f2f2f2;
+  padding: var(--padding);
+}
+
+.subscription-form-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: #fff;
+  padding: var(--padding);
+}
+
+.subscription-container form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: stretch;
+}
+
+.subscription-container .field {
+  margin-bottom: 18px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  font-weight: 100;
+  transition: all 150ms ease-in-out;
+}
+
+.subscription-container .field:hover,
+.field:focus,
+.field:active {
+  box-shadow: 0 0 3px 0px var(--textLink);
+}
+
+.subscription-container .submit-btn {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100px;
+  height: 50px;
+  background: var(--themeColor);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 3px 0px #9c9898;
+  transition: all 350ms ease-in-out;
+}
+
+.subscription-container .submit-btn:hover {
+  opacity: 0.9;
+}
+
+.subscription-container .form-status {
+  margin: 10px 0;
+  font-size: 0.8em;
+}
+
+.subscription-container .form-status.status--error {
+  color: var(--danger);
+}
+
+.subscription-container .title-image {
+  margin: 37px 0;
+  font-size: 2em;
+  color: var(--themeColor);
+  position: relative;
+}
+
+.subscription-container .title-image img {
+  background: transparent;
+  max-width: 75px;
+  position: absolute;
+}
+
+.subscription-container .title-image .icon-move {
+  position: absolute;
+  left: 70px;
+  top: 0px;
+  animation-name: fly;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+.subscription-container .title-image .icon-target {
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+
+@keyframes fly {
+  0% {
+    left: 70px;
+    opacity: 1;
+    transform: scale(1);
+    top: 0;
+  }
+  75% {
+    opacity: 0.7;
+    transform: scale(0.2);
+  }
+  100% {
+    left: 200px;
+    opacity: 0;
+    transform: scale(0);
+    top: 10px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .subscription-container {
+    flex-direction: column;
+  }
+
+  .subscription-container .title-image .icon-target {
+    left: 210px;
+  }
+
+  .subscription-title {
+    min-height: 245px;
+  }
 }
 
 /* #endregion */

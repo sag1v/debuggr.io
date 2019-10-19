@@ -8,7 +8,7 @@ import DayNightSwitch from './DayNightSwitch';
 import '../utils/global.css';
 
 // needs to be in sync with global.css vars
-const darkBg =  '#323232';
+const darkBg = '#323232';
 const lightBg = '#fff';
 
 function Layout(props) {

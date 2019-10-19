@@ -47,16 +47,11 @@ const Bio = () => {
       <Image
         fixed={data.avatar.childImageSharp.fixed}
         alt={author}
-        style={{
-          marginBottom: 0,
-          minWidth: 50,
-          borderRadius: `100%`,
-        }}
+        className="bio-avatar"
         imgStyle={{
           borderRadius: `50%`,
         }}
       />
-      <div className="bio-separator" />
       <p className="bio-text">
         Written by <Author url={`https://mobile.twitter.com/${social.twitter}`}>{author}</Author>.
         <span style={{ display: 'block' }}>

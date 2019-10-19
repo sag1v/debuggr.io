@@ -226,5 +226,11 @@ module.exports = {
       },
     },
     `gatsby-plugin-catch-links`,
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint: 'https://gmail.us20.list-manage.com/subscribe/post?u=9c36982310c54184c4368801d&amp;id=02e0af0a59',
+      },
+    }
   ],
 }
