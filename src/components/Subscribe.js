@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
-import FontAwesome from 'react-fontawesome';
-import logo from '../../content/assets/debuggrLogo.png';
 import newsletter from '../../content/assets/newsletter.png';
 
 const Field = ({ className, ...rest }) => (
@@ -44,14 +42,9 @@ function Subscribe() {
             <div className="subscription-title">
                 <h3>Keep in touch</h3>
                 <div>Subscribe to get the latest posts by Email</div>
-                {/* <div className="title-image">
-                    <img src={logo} alt="debuggr.io logo" />
-                    <FontAwesome name="paper-plane" size="lg" className="icon-move" />
-                    <FontAwesome name="envelope-open-text" className="icon-target" />
-                </div> */}
                 <img
                     src={newsletter}
-                    alt="news letter picture"
+                    alt="open envelope with a letter which it's title is debuggr.io"
                     style={{
                         background: 'transparent',
                         width: '100px',
