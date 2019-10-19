@@ -289,7 +289,7 @@ h4 {
   margin-bottom: 18px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 10px;
   font-size: 0.9em;
   font-weight: 100;
   transition: all 150ms ease-in-out;
@@ -326,64 +326,15 @@ h4 {
   color: var(--danger);
 }
 
-.subscription-container .title-image {
-  margin: 37px 0;
-  font-size: 2em;
-  color: var(--themeColor);
-  position: relative;
-}
-
-.subscription-container .title-image img {
+.subscription-container img {
   background: transparent;
-  max-width: 75px;
-  position: absolute;
-}
-
-.subscription-container .title-image .icon-move {
-  position: absolute;
-  left: 70px;
-  top: 0px;
-  animation-name: fly;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-}
-
-.subscription-container .title-image .icon-target {
-  position: absolute;
-  right: 0;
-  top: 10px;
-}
-
-@keyframes fly {
-  0% {
-    left: 70px;
-    opacity: 1;
-    transform: scale(1);
-    top: 0;
-  }
-  75% {
-    opacity: 0.7;
-    transform: scale(0.2);
-  }
-  100% {
-    left: 200px;
-    opacity: 0;
-    transform: scale(0);
-    top: 10px;
-  }
+  width: 70px;
+  margin: 25px 0 0 0;
 }
 
 @media only screen and (max-width: 650px) {
   .subscription-container {
     flex-direction: column;
-  }
-
-  .subscription-container .title-image .icon-target {
-    left: 210px;
-  }
-
-  .subscription-title {
-    min-height: 255px;
   }
 }
 

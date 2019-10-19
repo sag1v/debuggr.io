@@ -45,11 +45,6 @@ function Subscribe() {
                 <img
                     src={newsletter}
                     alt="open envelope with a letter which it's title is debuggr.io"
-                    style={{
-                        background: 'transparent',
-                        width: '100px',
-                        margin: '50px 0 0 0'
-                    }}
                 />
             </div>
 
