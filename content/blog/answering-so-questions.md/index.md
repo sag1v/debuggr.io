@@ -1,13 +1,13 @@
 ---
-title: Answering StackOverflow questions can make you a better programmer
+title: Answering Stack Overflow questions can make you a better programmer
 date: "2019-06-29"
-description: ~8 reasons why you should answer StackOverflow questions
+description: ~8 reasons why you should answer Stack Overflow questions
 featuredImage: './cover.png'
 tags: beginners, discuss, career, productivity
 ---
 
 # Why should I bother?
-Why should we bother ourselves to try and solve other people’s challenges? We have our own challenges and sometimes are up against a tight deadline. I’m often asked this by friends and peers, so here is a list I made of the reasons that motivate me to answer [StackOverflow](https://stackoverflow.com/) questions (not in a particular order):
+Why should we bother ourselves to try and solve other people’s challenges? We have our own challenges and sometimes are up against a tight deadline. I’m often asked this by friends and peers, so here is a list I made of the reasons that motivate me to answer [Stack Overflow](https://stackoverflow.com/) questions (not in a particular order):
 
 
 ## The Motivation List
@@ -20,7 +20,7 @@ Why should we bother ourselves to try and solve other people’s challenges? We 
 - Improve English skills (as a second language)
 - Document your solutions
 
-<small>I'm mostly mentioning [StackOverflow](https://stackoverflow.com/) here because I think it's the most comfortable platform to share knowledge, but everything I write here is relevant to any other platform. </small>
+<small>I'm mostly mentioning [Stack Overflow](https://stackoverflow.com/) here because I think it's the most comfortable platform to share knowledge, but everything I write here is relevant to any other platform. </small>
 
 ## Points, Credit & Prestige
 Well, I wanted to start with this one because it’s kind of “The elephant in the room”. Most of us like getting credit for the things we do and who doesn’t **LOVE** points and ratings? I sure do!
@@ -30,7 +30,7 @@ So yeah, I think it’s a motivation, although likely the most selfish item on m
 ## Kindness and giving back to the community
 OK, it’s a cliche. I know! But it can’t be helped, in most cases when we help someone it makes us feel good and satisfied. I gain so much knowledge from the _“internet”_ (which is basically a bunch of people that help me whether they know it or not), so it’s only natural to want to give something back.
 
-As a developer, StackOverflow is and still is one of the best tools I have.
+As a developer, Stack Overflow is and still is one of the best tools I have.
 “Giving back to the community” may be a cliche but this is the foundation stones which our community (should I write society?) is built upon. 
 So if you have the chance and the ability, Give Back To The Community, do it with kindness and respect. And eventually you’ll find that what can be a small effort on your end, can have a big impact for the person sitting on the other side.
 
@@ -39,7 +39,7 @@ So if you have the chance and the ability, Give Back To The Community, do it wit
 ## Gain experience with real world challenges
 Consider the following scenario: You are learning a new language / technology / feature / design pattern, you have probably been watching some online courses and following some tutorials. I would even reckon, most if not all of them, provide simple examples under controlled laboratory conditions. But alas, none of us has the privilege to work under these conditions, we live in the real world.
 
-The great thing about trying to answer questions on StackOverflow is that you accept a **_”real world”_** challenge.
+The great thing about trying to answer questions on Stack Overflow is that you accept a **_”real world”_** challenge.
 
 As a beginner to the subject, you may not be able to provide a high-quality answer fast enough before the coveted great shiny check-mark was clicked
 and another answer was marked as accepted. 
@@ -58,7 +58,7 @@ And here we are kind of fast-tracking our hands-on experience through multi-thre
 
 ## Keep up with the race and stay ahead of the game
 As opposed to the previous item on the list (which mostly addressed beginners) this one is mostly relevant for experienced developers. As an experienced developer you probably want to keep up with all the new stuff that coming out, or maybe you want to be that go-to person when people need help with new stuff. Maybe the tech you are working with isn't the newest thing out there or maybe the version is a bit outdated.
-Answering questions on StackOverflow may help you keep up with new technologies as they emerge, and sharpen your skills, enabling you to gain experience with that new feature that just came out last month.
+Answering questions on Stack Overflow may help you keep up with new technologies as they emerge, and sharpen your skills, enabling you to gain experience with that new feature that just came out last month.
 
 ## Learning new things "by mistake"
 Sometimes when you are trying to answer a question, you'll notice that the OP (Original Poster) is using a stack or a library you are not experienced with. I mean, you know the tech the [OP](https://meta.stackoverflow.com/questions/253162/what-is-an-op-when-referring-to-stack-exchange) (Original Poster) is using, but there is a cool library or feature you never tried. In order to help, you may need to read the basics and look through the DOCS or maybe even try an API you never tried.
@@ -67,18 +67,18 @@ This is awesome, because you just learned a new thing, and learning is part of o
 ## Improve tech communication skills
 One of the most important skills for developers is the "tech communication skill", it allows you to articulate a problem or a solution which the other side (other team members) can easily understand. The ability to execute something that "lives" in your head is hard enough, but to explain it to others so they can be part of the operation… that's a skill, a **great** skill to have on your tool-belt.
 To be able to write a high quality answer (or question, by the way) will require you to "stretch" that skill, this will let you enhance it.
-If there is one common thing for all of the best answers (and questions!) on StackOverflow is that they are all well-phrased and the author managed to easily convey their idea to the reader. Some use humor, others use analogies and some use dry facts, it doesn't matter as long as the reader gets the idea. 
+If there is one common thing for all of the best answers (and questions!) on Stack Overflow is that they are all well-phrased and the author managed to easily convey their idea to the reader. Some use humor, others use analogies and some use dry facts, it doesn't matter as long as the reader gets the idea. 
 
 ## Improve English skills (as a second language)
 Well this one is very personal and maybe considered as a niche, but English may not be your native language, well it's not my native language and you probably already picked that up :smirk: ). With English being the universal language of technologists around the globe, and not all are born native speakers, this is a good way to gain confidence in your English skills, and can ultimately carry over to getting involved in others ways - such as contributing code or documentation to open source projects.
 
 ## Document your solutions
-You have taken the time to write great and useful solutions, why not document and preserve them somewhere? StackOverflow can be a great place to store your solutions, you get a free space **AND** a great searching tool to track them later, you can basically see it as your own personal wiki.
-Another cool thing about it is that you can use your StackOverflow profile page as a "portfolio of case studies". I mean attaching it to a CV or including it in your LinkedIn account gives future recruiters a chance to see how you approach problems, and how you communicate solutions with others. Not to mention that it's always good to be perceived as a person who helps others. :smile:  
+You have taken the time to write great and useful solutions, why not document and preserve them somewhere? Stack Overflow can be a great place to store your solutions, you get a free space **AND** a great searching tool to track them later, you can basically see it as your own personal wiki.
+Another cool thing about it is that you can use your Stack Overflow profile page as a "portfolio of case studies". I mean attaching it to a CV or including it in your LinkedIn account gives future recruiters a chance to see how you approach problems, and how you communicate solutions with others. Not to mention that it's always good to be perceived as a person who helps others. :smile:  
 
 ---
 ## Summing it up
-As you can see, there are a lot of reasons that should motivate you to be active as a StackOverflow user (or any other similar platform).
+As you can see, there are a lot of reasons that should motivate you to be active as a Stack Overflow user (or any other similar platform).
 While some are for your own personal benefit and some can benefit your environment, all of them are eventually rewarding and satisfying.
 With that said, make sure it doesn't interrupt your job or daily tasks. What works for me is to allocate a specific time for that within my free time and make sure I don't exceed it.
 
