@@ -10,7 +10,7 @@ If your application is depended on a state that gets updated asynchronously, the
 
 In this article I will use a demo application that I used in a previous article [React state update on an unmounted component](https://debuggr.io/react-update-unmounted-component). Although reading it is not a prerequisite, I do think its a good idea to read it.
 
-_👀 I've uploaded a [starter repo to github](https://github.com/sag1v/react-async-state-debuggrio) so you won't have to copy paste the code.
+_👀 I've uploaded a [starter repo to github](https://github.com/sag1v/react-race-conditions-debuggrio) so you won't have to copy paste the code.
 You can clone and run it locally or use the **import** feature of [codesandbox.io](https://codesandbox.io/s/)_
 
 This is how our application looks like: 
@@ -253,6 +253,35 @@ function Pets() {
 In trial #2 we made some progress but we ended up with kind of a "global" variable. What was missing is a variable attached to the instance of our component. In class components we would use the `this` key word to reference the instance -- `this._previousKey`. In function components the `this` key word doesn't reference the component's instance because there is no instance (you can read more about the `this` key word in [JavaScript - The "this" key word in depth](https://www.debuggr.io/js-this-in-depth/)). React solved the lack of instance issue with the `useRef` hook. Think of it as a mutable state object for your component that doesn't trigger a re-render when you update it (unlike `useState` or `useReducer`).
 
 This way we can safely store the `_previousKey` and compare it to the current `selectedPet` and only if they match, update our state with the relevant data object. If you run the code now you will see that we fixed our bug 🙌
+
+## Trial #3.5 (✔️)
+
+```jsx{2,6-9,15}
+useEffect(() => {
+  let abort = false;
+
+  if (pets.selectedPet) {
+    dispatch({ type: "FETCH_PET" });
+    getPet(pets.selectedPet).then(data => {
+      if(!abort){
+        dispatch({ type: "FETCH_PET_SUCCESS", payload: data });
+      }
+    });
+  } else {
+    dispatch({ type: "RESET" });
+  }
+
+  return () => abort = true;
+
+}, [pets.selectedPet])
+```
+
+This is another possible solution. Instead of keeping track on the matching values, we can just use a simple flag that indicates if we should keep with our update state operation. Every time the effect runs we are initializing the `abort` variable with `false`, inside the cleanup function of the effect we set it to `true`. the effect will only run at first render and every time one of the values passed to the dependencies array is changed. The cleanup function will run just before each cycle of the effect and when the component is unmounted.  
+
+This works great and probably the preferred solution for some people, but keep in mind that now your effect can't have other none related logic with none related dependencies in the array (and it shouldn't have!), because then the effect will re-run if those dependencies change and will trigger the cleanup function which will flip the `abort` flag.
+
+Nothing is stopping you from having multiple `useEffect` functions, one for each logic operation. 
+
 
 ## Good news
 Note that this is not a react specific problem, this is a challenge that most if not all of the UI libraries or framework are facing, due to the nature of asynchronous operations and state management. The good news is that the react team is working on a great feature called [Concurrent Mode](https://reactjs.org/docs/concurrent-mode-intro.html) and one of its features is [Suspense](suspense) which should cover this issue out of the box.
