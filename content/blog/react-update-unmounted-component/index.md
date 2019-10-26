@@ -331,7 +331,7 @@ function useIsMountedRef(){
     return () => isMountedRef.current = false;
   });
 
-  return isMountedRef.current;
+  return isMountedRef;
 }
 
 function Pets() {
