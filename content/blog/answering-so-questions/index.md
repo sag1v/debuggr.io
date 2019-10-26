@@ -4,6 +4,10 @@ date: "2019-06-29"
 description: ~8 reasons why you should answer Stack Overflow questions
 featuredImage: './cover.png'
 tags: beginners, discuss, career, productivity
+redirect_from:
+  - /answering-so-questions.md/
+  - /answering-so-questions.md
+  # note: forward slashes are required
 ---
 
 # Why should I bother?
