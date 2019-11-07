@@ -1,11 +1,11 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "debuggr.io",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "A personal blog by Sagiv Ben Giat",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Sagiv Ben Giat",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/sag1v/debuggr.io/issues"
   },
   "dependencies": {
     "@weknow/gatsby-remark-twitter": "^0.2.3",
@@ -52,13 +52,17 @@
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
   "keywords": [
-    "gatsby"
+    "javascript",
+    "react",
+    "sag1v",
+    "sagiv",
+    "debuggr"
   ],
   "license": "MIT",
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/sag1v/debuggr.io.git"
   },
   "scripts": {
     "build": "gatsby build",
