@@ -35,12 +35,14 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = data.site.siteMetadata.title
     const { previous, next } = pageContext
     const featuredImgFluid = frontmatter.featuredImage && frontmatter.featuredImage.childImageSharp.fluid;
+    const imageSrc = frontmatter.featuredImage && frontmatter.featuredImage.childImageSharp.fixed.src;
 
     return (
       <Layout location={location} title={siteTitle}>
         <SEO
           title={frontmatter.title}
           description={frontmatter.description || post.excerpt}
+          image={imageSrc}
         />
         <article>
           <header>
