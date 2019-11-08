@@ -4,7 +4,7 @@ module.exports = {
     author: `Sagiv Ben Giat`,
     description: `A Personal blog by Sagiv Ben Giat`,
     motto: 'Code, Thoughts & Opinions',
-    siteUrl: `https://debuggr.io/`,
+    siteUrl: `https://debuggr.io`,
     social: {
       twitter: `sag1v`,
       github: 'sag1v',
@@ -121,6 +121,7 @@ module.exports = {
               target: '_blank',
             },
           },
+          `gatsby-remark-social-cards`,
         ],
       },
     },
