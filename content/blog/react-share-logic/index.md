@@ -2,7 +2,7 @@
 title: React reusable logic - A tale of 3 knights and a Primitive
 description: The evolution of logic sharing in react
 date: "2019-11-01"
-featuredImage: ./cover.jpg
+featuredImage: ./cover.png
 tags: javascript, react, hooks, hoc, mixins, render-props
 ---
 
