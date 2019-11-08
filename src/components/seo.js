@@ -27,10 +27,11 @@ function SEO({ description, lang, meta, title, image }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || site.siteMetadata.description;
+  const ticks = new Date().getTime();
   const ogImageUrl =
     site.siteMetadata.siteUrl +
-    (image || defaultOpenGraphImage);
+    (image || defaultOpenGraphImage) + `?cache=${ticks}`;
 
   return (
     <Helmet
