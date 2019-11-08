@@ -35,7 +35,7 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = data.site.siteMetadata.title
     const { previous, next } = pageContext
     const featuredImgFluid = frontmatter.featuredImage && frontmatter.featuredImage.childImageSharp.fluid;
-    const imageSrc = frontmatter.featuredImage && frontmatter.featuredImage.childImageSharp.fixed.src;
+    const imageSrc = frontmatter.featuredImage && frontmatter.featuredImage.childImageSharp.fluid.src;
 
     return (
       <Layout location={location} title={siteTitle}>
@@ -139,10 +139,6 @@ export const pageQuery = graphql`
           childImageSharp {
             fluid(maxWidth: 800) {
               ...GatsbyImageSharpFluid
-            }
-            fixed(width: 400) {
-              # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
-              ...GatsbyImageSharpFixed
             }
           }
         }
