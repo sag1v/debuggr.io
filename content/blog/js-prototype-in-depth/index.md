@@ -93,7 +93,7 @@ function createPlayer(userName, score) {
 const player1 = createPlayer('sag1v', 700);
 ```
 
-This pattern is usually referred to as "Factory Functions", as in sort of a conveyor belt in a factory that outputs objects. We pass in the relevant arguments and get back the `Object` we need.
+This pattern is usually referred to as "Factory Functions", as in sort of a conveyor belt in a factory that outputs objects, we pass in the relevant arguments and get back the `Object` we need.
 
 what happens if we run this function twice?
 
@@ -131,7 +131,7 @@ we will get 2 objects with this shape:
 
 Did you notice some duplications? Our `setScore` is stored for each instance, this is breaking the D.R.Y (Don't Repeat Yourself) principle.
 
-What if we could store it somewhere else, once, and still be able to access it via the object: `player1.setScore(1000)`?
+What if we could store it somewhere else, once, and still be able to access it via the object instance: `player1.setScore(1000)`?
 
 ### OLOO - Objects Linked To Other Objects
 
@@ -157,11 +157,11 @@ const player2 = createPlayer('sarah', 900);
 
 This code works exactly like our previous code with one important difference, our new object instance doesn't hold the `setScore` method, it has a **link** to it in `playerFunctions`.
 
-It turns out, that **ALL** objects in javascript have a special hidden property called `__proto__` (pronounced "dunder proto"), and if that property is pointing to an object then the engine will treat this object's properties as if they were on the instance itself. In other words, every object can link to other object via the `__proto__` property and access it's properties like they were it's own.
+It turns out, that **ALL** objects in javascript have a special hidden property called `__proto__` (pronounced "dunder proto"), and if that property is pointing to an object then the engine will treat this object's properties as if they were on the instance itself. In other words, every object can link to another object via the `__proto__` property and access it's properties like they were it's own.
 
 #### ️️⚠️ Note
 
-Don't confuse `__proto__` with the `prototype` property, `prototype` is a property that only functions have. `__proto__` on the other hand is a property that **only** objects have. To make it more confusing, The `__proto__` property is called `[[Prototype]]` in the [EcmaScript specifications](https://www.ecma-international.org/ecma-262/6.0/#sec-ordinary-object-internal-methods-and-internal-slots).
+Don't confuse `__proto__` with the `prototype` property, `prototype` is a property that only exists on functions. `__proto__` on the other hand is a property that **only**  exists on objects. To make it more confusing, The `__proto__` property is called `[[Prototype]]` in the [EcmaScript specifications](https://www.ecma-international.org/ecma-262/6.0/#sec-ordinary-object-internal-methods-and-internal-slots).
 
 We will comeback to that later on 🤔
 
@@ -211,16 +211,19 @@ player1.setScore(1000);
 player2.setScore(2000);
 ```
 
-We achieved our goal here, we have objects with data and functionality attached to them and we didn't break the D.R.Y principle. But this seems like a lot of effort to put just for creating linked objects:  
+We achieved our goal here, we have objects with data and functionality attached to them and we didn't break the D.R.Y principle.
+
+But this seems like a lot of effort to put just for creating linked objects:  
 
 1. We need to create the object.
-2. We must use `Object.create` to link the `__proto__` property to a different object.
-3. We need to populate the new object with properties.
-4. We need to return the new object.
+2. We need to create a different object that holds our functionality.
+3. We must use `Object.create` to link the `__proto__` property to the functionality object.
+4. We need to populate the new object with properties.
+5. We need to return the new object.
 
 What if some of these tasks could be done for us?
 
-### The new operator - A.K.A Constructor function
+### The `new` operator - A.K.A Constructor function
 
 In the previous example we saw that we have some "tasks" to do in order to create our linked object inside the factory function. JavaScript can do some of these tasks for us if we just use the `new` operator with a function invocation.
 
@@ -241,13 +244,13 @@ double.someProp // Hi there!
 double.prototype // {}
 ```
 
-We all know what a function is right? We can declare it then invoke it with parentheses `()`. But looking at the code above, we can also read or create properties on it, exactly like we can do with objects. So my conclusion here is that functions in JavaScript are not *just* functions, they are sort of a "function & object combination". Basically **every** function can be invoked and treated like an object.
+We all know what a function is right? We can declare it, then invoke it with parentheses `()`. But looking at the code above, we can also read or create properties on it, exactly like we can do with objects. So my conclusion here is that functions in JavaScript are not *just* functions, they are sort of a "function & object combination". Basically **every** function can be invoked **AND** can be treated like an object.
 
 ##### The prototype property
 
 It turns out, that all functions (with the exception of [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Use_of_prototype_property)) have a `.prototype` property on them.
 
-Yeah here is the warning again:
+Yeah, here is the warning again:
 >Not `__proto__` or `[[Prototype]]`, but `prototype`.
 
 Now lets get back to the **new operator**.
@@ -255,6 +258,8 @@ Now lets get back to the **new operator**.
 ##### Invoking with the `new` operator
 
 This is how our function might look like with the `new` operator:
+
+⚠️ If you are not 100% sure you understand how the `this` key word works, you might want to read [JavaScript - The "this" key word in depth](https://www.debuggr.io/js-this-in-depth/)
 
 ```jsx
 function Player(userName, score){
@@ -329,13 +334,29 @@ Player.prototype.setScore = function(newScore){
 
 So this is how we can create objects linked to other objects with the Constructor functions.
 
-By the way, if we didn't use the `new` operator, JavaScript wouldn't do these tasks for us. We would just end up mutating or creating some properties on the `this` context, remember this option, we will use this trick when we will do sub-classing.
+By the way, if we didn't use the `new` operator, JavaScript wouldn't do these tasks for us, we would just end up mutating or creating some properties on the `this` context. Remember this option, we will use this trick when we will do sub-classing.
 
-For an in depth explanation about the `this` key word you can read [JavaScript - The "this" key word in depth](http://localhost:8000/js-this-in-depth/).
+There are ways to make sure the function was called with the `new` operator:
+
+```jsx
+function Player(username, score){
+
+  if(!(this instanceof Player)){
+    throw new Error('Player must be called with new')
+  }
+
+  // ES2015 syntax
+  if(!new.target){
+    throw new Error('Player must be called with new')
+  }
+}
+```
+
+Again, for an in depth explanation about the `this` key word you can read [JavaScript - The "this" key word in depth](http://localhost:8000/js-this-in-depth/).
 
 ## Class
 
-If you don't like to write factory functions by hand or you don't like the constructor function syntax, JavaScript also provides a `class` (since ES2015). Keep in mind though, that classes are **mostly** a syntactic sugar over functions and they are very different from the traditional classes in other languages, we are still using a "prototypal inheritance".
+If you don't like to write factory functions by hand or you don't like the constructor function syntax or manually checking if the function was called with the new operator, JavaScript also provides a `class` (since ES2015). Keep in mind though, that classes are **mostly** a syntactic sugar over functions and they are very different from the traditional classes in other languages, we are still using a "prototypal inheritance".
 
 A quote from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes):
 
@@ -345,6 +366,8 @@ Lets convert our "constructor function" to a `class` step by step:
 
 ### Declare a class
 
+We use the `class` key word and name our class the same way we named our constructor function from the previous section.
+
 ```jsx
 class Player {
 
@@ -353,7 +376,7 @@ class Player {
 
 ### Create a constructor
 
-We will take the constructor function's body from the previous example and create a `constructor` method for our class with it:
+We will take the constructor function's body from the previous section and create a `constructor` method for our class with it:
 
 ```jsx{2-5}
 class Player {
@@ -447,7 +470,7 @@ double.hasOwnProperty('name') // where is this method coming from?
 Function.prototype.__proto__ // -> Object.prototype {hasOwnProperty: f}
 ```
 
-We know that if a property is not directly on the object, the engine will look for this property on the linked object (if exists) via the `__proto__` property. But what happens if the property we are looking for is not there as well? Well as we previously learned, **all** objects has a `__proto__` property, so the engine will check the next linked object via the `__proto__` property, and if the property we are looking for is not there? well i think you get it, the engine will keep going up the chain via the `__proto__` property until it hits a dead end, i.e a null reference, which is basically the `Object.prototype.__proto__`.
+We know that if a property is not directly on the object, the engine will look for this property on the linked object (if exists) via the `__proto__` property. But what happens if the property we are looking for is not there as well? Well as we previously learned, **all** objects have a `__proto__` property, so the engine will check the next linked object via the `__proto__` property, and if the property we are looking for is not there? well i think you get it, the engine will keep going up the chain via the `__proto__` property until it hits a dead end, i.e a null reference, which is basically the `Object.prototype.__proto__`.
 
 So if we step through the code example:
 
@@ -475,9 +498,9 @@ Here is a small animated gif to demonstrate the process:
 
 ![Showing the steps of the prototype chain](./prototype-run.gif)
 
-We will go all the way again, we will implement this feature with the "OLOO pattern", "Constructor Functions" pattern and with classes. This way we will see the tradeoffs for each pattern and feature.
+Now back to our task of creating a paid user entity. We will go all the way again, we will implement this feature with the "OLOO pattern", "Constructor Functions" pattern and with classes. This way we will see the tradeoffs for each pattern and feature.
 
-Now we can go back to sub-classing.
+So lets dive in to sub-classing. 💪
 
 ## OLOO - Sub Classing
 
@@ -623,11 +646,30 @@ PaidPlayer {
 }
 ```
 
-This is effectively the same results that we got with the factory function patten but with some stuff that were automated for us by the `new` operator. It might saved us some lines of code but it did introduce a different challenges.
+This is effectively the same results that we got with the factory function patten but with some stuff that were automated for us by the `new` operator. It might saved us some lines of code but it did introduce some other challenges.
 
-Our first challenge was how do we use the `Player` function to get the logic of creating the initial `Player`. We did this by calling it without the `new` operator (against all our instinct!) and using the `.call` method which allowed us to explicit pass a reference for `this`, this way the `Player` function is not operating as a constructor method so it won't create a new object and assign it to `this`, we only using it to mutate our passed in `this` which is basically the newly created object inside the context of `PaidPlayer`.
+Our first challenge was how do we use the `Player` function to get the logic of creating the initial `Player`. We did this by calling it without the `new` operator (against all our instincts!) and using the `.call` method which allowed us to explicitly pass a reference for `this`, this way the `Player` function is not operating as a constructor method so it won't create a new object and assign it to `this`
 
-Another challenge is to link the instance returned by `PaidPlayer` to the functionality the instances of `Player` have, we did that with `Object.setPrototypeOf` and we linked `PaidPlayer.prototype` to `Player.prototype`.
+```jsx{8}
+function PaidPlayer(userName, score, balance) {
+  this.balance = balance;
+  /* we are calling "Player" without the "new" operator
+  but we use the "call" method,
+  which allows us to explicitly pass a ref for "this".
+  Now the "Player" function will mutate "this"
+  and will populate it with the relevant properties */
+  Player.call(this, userName, score);
+}
+```
+
+We are only using `Player` here to mutate our passed in `this` which is basically the newly created object inside the context of `PaidPlayer`.
+
+Another challenge we have, is to link the instance returned by `PaidPlayer` to the functionality that instances of `Player` have, we did that with `Object.setPrototypeOf` and we linked `PaidPlayer.prototype` to `Player.prototype`.
+
+```jsx
+// link PaidPlayer.prototype object to Player.prototype object
+Object.setPrototypeOf(PaidPlayer.prototype, Player.prototype);
+```
 
 As you can see, the more things our engine is doing for us the less code we need to write, but as the amount of abstraction grow its harder for us to keep track about what is happening under the hood.
 
@@ -696,21 +738,31 @@ So as you see, classes are nothing but a syntactic sugar over the constructor fu
 Remember this line from the docs:
 >JavaScript classes, introduced in ECMAScript 2015, are primarily syntactical sugar over JavaScript’s existing prototype-based inheritance...
 
-Yeah, `primarily`.
+Yeah, **primarily**.
 
-When we used the `extends` key word, we needed to use the `super` function, so we can "mimic" the `Player.call(this, userName, score)` part remember?
+When we used the `extends` key word, we needed to use the `super` function, why?
 
-Well not exactly, since classes released we got another new feature / API to JavaScript: [Reflect.construct](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/construct). Quoting from the docs:
+Remember this (strange) line from the "Constructor Functions" section:
+
+```jsx
+Player.call(this, userName, score)
+```
+
+so `super(userName, score)` is kind of a way to mimic it.
+
+Well if we want to be a bit more accurate here, under the hood it uses a new feature that introduced with ES2015: [Reflect.construct](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/construct).
+
+Quoting from the docs:
 
 >The static Reflect.construct() method acts like the new operator, but as a function. It is equivalent to calling new target(...args). It gives also the added option to specify a different prototype.
 
-So we don't need to "hack" the constructor functions anymore. Basically under the hood the `super` is implemented with `Reflect.construct`:
+So we don't need to "hack" the constructor functions anymore. Basically under the hood the `super` is implemented with `Reflect.construct`. Its also important to mention that when we `extend` a class, inside the `constructor` body we can't use `this` before we run `super()`, because `this` is uninitialized yet.
 
 ```jsx
 class PaidPlayer extends Player {
   constructor(userName, score, balance) {
-    // "this" is uninitilized yet...
-    // super refres to Player in this case
+    // "this" is uninitialized yet...
+    // super refers to Player in this case
     super(userName, score);
     // under the hood super is implemented with Reflect.construct
     // this = Reflect.construct(Player, [userName, score], PaidPlayer);
@@ -722,3 +774,13 @@ class PaidPlayer extends Player {
   }
 }
 ```
+
+## Wrapping up
+
+We see it again and again, the more abstraction we get the more "stuff" are going on under the hood which makes it harder for us to keep track on what is going on with our code.
+
+Each pattern has it's pros and cons:
+
+- With `Object.create` we need to write more code but we have a more fine-grained control over our objects. Though it becomes tedious to do deep level chaining.
+- With the constructor functions we get some automated tasks done by JavaScript but the syntax may look a bit strange. We also need to make sure that our functions get invoked with the `new` key word or we will face nasty bugs. Deep level chaining isn't that great as well.
+- With classes we get a more closer syntax to other languages and it looks like an easy thing to learn. Though this is also a downside because as we saw, its so different than classes in other languages. We still use the old "Prototypal Inheritance" with a lot of layers of abstractions on it.
