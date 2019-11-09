@@ -441,7 +441,7 @@ Player {
 }
 ```
 
-As you can see, `class` works and behave the same as a function with a prototype chain, its just a different syntax.
+As you can see, `class` works and behave the same as a function with a prototype chain, its just a different syntax. You also get a built-in check that the `class` function was invoked with the `new` operator.
 
 ## Sub-Classing - A.K.A Inheritance
 
@@ -783,4 +783,6 @@ Each pattern has it's pros and cons:
 
 - With `Object.create` we need to write more code but we have a more fine-grained control over our objects. Though it becomes tedious to do deep level chaining.
 - With the constructor functions we get some automated tasks done by JavaScript but the syntax may look a bit strange. We also need to make sure that our functions get invoked with the `new` key word or we will face nasty bugs. Deep level chaining isn't that great as well.
-- With classes we get a more closer syntax to other languages and it looks like an easy thing to learn. Though this is also a downside because as we saw, its so different than classes in other languages. We still use the old "Prototypal Inheritance" with a lot of layers of abstractions on it.
+- With classes we get a cleaner syntax and a built-in check that it was invoked with the `new` operator. The syntax is also more closer to other languages and it looks like an easy thing to learn. Though this is also a downside because as we saw, its so different than classes in other languages. We still use the old "Prototypal Inheritance" with a lot of layers of abstractions over it.
+
+Hope you found this article helpful, if you have something to add or any suggestions or feedbacks I would love to hear about them, you can tweet or DM me [@sag1v](https://mobile.twitter.com/sag1v). 🤓
