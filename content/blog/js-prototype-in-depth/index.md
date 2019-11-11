@@ -570,7 +570,7 @@ paidPlayer {
 
 As you can see, our `createPlayer` function implementation didn't change, but with the `createPaidPlayer` function we needed to pull some tricks. 
 
-In `createPaidPlayer` we are using the `createPlayer` to create the initial new object so we won't need to duplicate the logic of creating a new player, but unfortunately its linking our `__proto__` to the wrong object, se we need to fix that with the `Object.setPrototypeOf` method. We pass it the target object (the newly created object that we need to fix it's `__proto__` pointer) and we pass it the correct object we want it to point to, e.g `paidPlayerFunctions`. 
+In `createPaidPlayer` we are using the `createPlayer` to create the initial new object so we won't need to duplicate the logic of creating a new player, but unfortunately its linking our `__proto__` to the wrong object, so we need to fix that with the `Object.setPrototypeOf` method. We pass it the target object (the newly created object that we need to fix it's `__proto__` pointer) and we pass it the correct object we want it to point to, e.g `paidPlayerFunctions`. 
 
 We are not done yet though, because now we broke the linkage to the `playerFunctions` object which holds the `setScore` method. This is why we needed to link between `paidPlayerFunctions` and `playerFunctions`, again with `Object.setPrototypeOf`. This way we make sure our `paidPlayer` is linked to `paidPlayerFunctions` and then from there to `playerFunctions`.
 
@@ -777,7 +777,7 @@ class PaidPlayer extends Player {
 
 ## Wrapping up
 
-We learned about the the different ways we can connect objects, attaching data and logic and bundling it all together. We saw how "inheritance" works in JavaScript, chaining objects to other objects via the `__proto__` property, sometimes with multiple levels of chaining.
+We learned about the the different ways we can connect objects, attaching data and logic and bundle it all together. We saw how "inheritance" works in JavaScript, chaining objects to other objects via the `__proto__` property, sometimes with multiple levels of chaining.
 
 We see it again and again, the more abstraction we get the more "stuff" are going on under the hood, which makes it harder for us to keep track on whats going on with our code.
 
