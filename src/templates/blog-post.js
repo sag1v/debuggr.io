@@ -9,7 +9,7 @@ import Title from '../components/Title';
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 import Subscribe from "../components/Subscribe"
-const sharePlatforms = ['twitter', 'facebook', 'linkedIn', 'clipboard']
+const sharePlatforms = ['twitter', 'facebook', 'linkedIn', 'reddit', 'hackernews', 'clipboard'] // clipboard should be last!
 
 const ShareSection = ({ path, postName }) => (
   <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '40px' }}>

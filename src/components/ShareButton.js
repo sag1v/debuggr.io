@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-
 const NewTabLink = ({ children, style, ...rest }) => (
     <a
         target="_blank"
@@ -41,6 +40,28 @@ const LinkedInButton = ({ url, postName }) => {
             href={`https://www.linkedin.com/shareArticle?mini=true&title=${postName}&url=${url}`}
         >
             <FontAwesome name="linkedin" className="fab" />
+        </NewTabLink>
+    );
+}
+
+const RedditButton = ({ url, postName }) => {
+    const title = escape(postName);
+    return (
+        <NewTabLink
+            href={`https://www.reddit.com/submit?url=${url}&title=${title}`}
+        >
+            <FontAwesome name="reddit-alien" className="fab" />
+        </NewTabLink>
+    );
+}
+
+const HackerNewsButton = ({ url, postName }) => {
+    const title = escape(postName);
+    return (
+        <NewTabLink
+            href={`https://news.ycombinator.com/submitlink?u=${url}&t=${title}`}
+        >
+            <FontAwesome name="hacker-news" className="fab" />
         </NewTabLink>
     );
 }
@@ -108,9 +129,14 @@ function ShareButton({ platform, path, postName }) {
         case 'linkedIn':
             Component = LinkedInButton;
             break;
-
+        case 'reddit':
+            Component = RedditButton;
+            break;
         case 'clipboard':
             Component = CopyUrlButton;
+            break;
+        case 'hackernews':
+            Component = HackerNewsButton;
             break;
 
         default:
