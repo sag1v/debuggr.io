@@ -590,13 +590,6 @@ Player.prototype.setScore = function(newScore) {
   this.score = newScore;
 }
 
-const paidPlayerFunctions = {
-  setUserName(newName) {
-    this.userName = newName;
-  }
-}
-
-
 function PaidPlayer(userName, score, balance) {
   this.balance = balance;
   /* we are calling "Player" without the "new" operator
