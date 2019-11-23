@@ -79,6 +79,8 @@ counter() // 102
 
 As you can see we get some wrong numbers in here.
 
+Another issue with this approach is that we can't run more than 1 instance of `counter`.
+
 ## Lexical Scope
 
 Lexical Scope is basically a fancy way of saying "Static Scope", meaning we know at creation time what is the scope of our function.
@@ -103,7 +105,7 @@ const myFunc = createFunc();
 myFunc()
 ```
 
-It seems useless but lets explore the execution phase of our program:
+It may seem useless, but lets explore the execution phase of our program:
 
 1. We declare a new function with the `createFunc` label in the global variable environment.
 2. We declare a new variable `myFunc` in the global variable environment which it's value will be the returned value from the execution of`createFunc`.
@@ -111,10 +113,96 @@ It seems useless but lets explore the execution phase of our program:
 4. A new execution context is created (with a local variable environment).
 5. We declare a function and giving it a label of `newFunc` (stored in the local variable environment of `createFunc`).
 6. We return `newFunc`.
-7. The returned *value*** from `createFunc` is stored as the value of `myFunc` in the global variable environment.
+7. The returned **value** from `createFunc` is stored as the value of `myFunc` in the global variable environment.
 8. The variable environment of `createFunc` is marked for disposal (meaning the `newFunc` variable will not exist).
 9. We invoke `myFunc`.
 
 Note that when we return the function `newFunc`, we return the actual function definition, not the label.
 
 OK, so what can we do with this approach?
+
+It turns out, that when we return a function, we are not only returning our function definition but we also return it's entire lexical environment. I.e, if we had some variable declared in the same context (or outer contexts), our returned function would *close over* them, and keep a reference to them.
+
+Lets see that in action with our `counter` example:
+
+```jsx
+function createCounter() {
+  // creating a wrapping execution context
+  // so we won't pollute the global environment
+  let numOfExecutions = 0;
+
+  // creating and returning an inner function
+  // that closes over the lexical environment
+  function counter() {
+    numOfExecutions++;
+    console.log(numOfExecutions);
+  }
+
+  return counter;
+}
+
+const counter = createCounter();
+
+counter() // 1
+counter() // 2
+
+```
+
+As you can see, we are creating a wrapper execution context (`createCounter`) to store our `numOfExecutions` variable and we are returning the `counter` function. This way, every time we invoke `counter` it has access to the `numOfExecutions` variable. The fact that we are not re-running `createCounter` and only run `counter` let us persist `numOfExecutions` across executions of `counter`, thus allow `counter` to be stateful, meaning we can share data with multiple executions of this function.
+
+If we debug `counter`'s execution we can see in the developer-tools that `numOfExecutions` is not stored in the local variable environment of `counter` but in it's "Closure" scope, (refers to as `[[Scope]]` in the spec).
+
+![showing the closure scope for numOfExecutions in dev-tools debugger](./closure-debug.png)
+
+But what if we wanted to return an object and not a function?
+
+No problem, it will still work as expected:
+
+```jsx
+function createCounter() {
+  let count = 0;
+
+  function increment() {
+    count++;
+    return count;
+  }
+
+  function decrement() {
+    count--;
+    return count;
+  }
+
+  function reset() {
+    count = 0;
+  }
+
+  function log() {
+    console.log(count)
+  }
+
+  const counterObj = {
+    increment,
+    decrement,
+    reset,
+    log
+  }
+
+  return counterObj;
+}
+
+const counter = createCounter();
+
+counter.increment()
+counter.increment()
+counter.increment()
+
+counter.log() // 3
+
+```
+
+☝️ By the way, this pattern is usually called the "Module Pattern".
+
+As you can see, it doesn't matter what we are returning, it doesn't matter where or when we are calling the functions, the only thing matters is where did we defined our functions:
+
+> **WHERE** you define your function, determines what variables the function have access to **WHEN** it gets called.
+
