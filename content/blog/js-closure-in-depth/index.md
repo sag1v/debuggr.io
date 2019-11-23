@@ -234,7 +234,7 @@ As you can see, `counter1` and `counter2` are both stateful but are not conflict
 
 ## Optimizations
 
-Every returned function is closing over the **ENTIRE** lexical scope, meaning the entire lexical scope won't be garbage collected 🤔, This seems like a waste of memory and even a potential memory leak bug, should we re-consider the use of closures every time we need staeful functions?
+Every returned function is closing over the **ENTIRE** lexical scope, meaning the entire lexical scope won't be garbage collected 🤔. This seems like a waste of memory and even a potential memory leak bug, should we re-consider the use of closures every time we need staeful functions?
 
 Well, no. Most if not all browsers are optimizing this mechanism, meaning that in most cases only the variables that your function is actually using will be attached to the function's `[[scope]]`. Why in most cases and not all cases? Because in some cases the browser is unable to determine what variables the function is using, such as in case of using [eval](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval). Obviously this is the smallest concern of using `eval`, [it is safer to use `Function` constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#Never_use_eval!) instead.
 
