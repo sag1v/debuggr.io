@@ -36,9 +36,9 @@ Obviously this won't work well, because we are re-creating the `numOfExecutions`
 
 ## Execution context
 
-Every time we invoke a function, a new execution context is created, and each execution context has its own "Variable Environment" or "scope" if you will. This local variable environment is holding all arguments that got passed to it and all declarations made inside the body of the function, in our case the `numOfExecutions` variable. When the function is "done", e.g with a `return` statement or there are no more lines of code to execute, the engine will mark it to be garbage collected, meaning it's entire environment will get disposed.
+Every time we invoke a function, a new execution context is created, and each execution context has it's own "Variable Environment" or "scope" if you will. This local variable environment is holding all arguments that got passed to it and all declarations made inside the body of the function, in our case the `numOfExecutions` variable. When the function is "done", e.g with a `return` statement or there are no more lines of code to execute, the engine will mark it to be garbage collected, meaning it's entire environment will get disposed.
 
-This is the reason our code above doesn't work well, every time we invoke `counter` we create a new execution context with a new declaration of the `numOfExecutions` variable and incrementing it ot the value of `1`.
+This is the reason our code above doesn't work well, every time we invoke `counter` we create a new execution context with a new declaration of the `numOfExecutions` variable and incrementing it to the value of `1`.
 
 ## Global execution context
 
@@ -108,7 +108,7 @@ myFunc()
 It may seem useless, but lets explore the execution phase of our program:
 
 1. We declare a new function with the `createFunc` label in the global variable environment.
-2. We declare a new variable `myFunc` in the global variable environment which it's value will be the returned value from the execution of`createFunc`.
+2. We declare a new variable `myFunc` in the global variable environment which it's value will be the returned value from the execution of `createFunc`.
 3. We invoke the `createFunc` function.
 4. A new execution context is created (with a local variable environment).
 5. We declare a function and giving it a label of `newFunc` (stored in the local variable environment of `createFunc`).
@@ -206,3 +206,40 @@ As you can see, it doesn't matter what we are returning, it doesn't matter where
 
 > **WHERE** you define your function, determines what variables the function have access to **WHEN** it gets called.
 
+Another bonus we get from returning a function or an object with functions is that we can create multiple instances of `counter`, each will be stateful and share data across executions but won't conflict between other instances:
+
+```jsx
+function createCounter() {
+  let numOfExecutions = 0;
+
+  function counter() {
+    numOfExecutions++;
+    console.log(numOfExecutions);
+  }
+
+  return counter;
+}
+
+const counter1 = createCounter();
+const counter2 = createCounter();
+
+counter1() // 1
+counter1() // 2
+
+counter2() // 1
+counter2() // 2
+```
+
+As you can see, `counter1` and `counter2` are both stateful but are not conflicting with each others data, something we couldn't do with a global variable.
+
+## Optimizations
+
+Every returned function is closing over the **ENTIRE** lexical scope, meaning the entire lexical scope won't be garbage collected 🤔, This seems like a waste of memory and even a potential memory leak bug, should we re-consider the use of closures every time we need staeful functions?
+
+Well, no. Most if not all browsers are optimizing this mechanism, meaning that in most cases only the variables that your function is actually using will be attached to the function's `[[scope]]`. Why in most cases and not all cases? Because in some cases the browser is unable to determine what variables the function is using, such as in case of using [eval](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval). Obviously this is the smallest concern of using `eval`, [it is safer to use `Function` constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#Never_use_eval!) instead.
+
+## Wrapping up
+
+We learned about how "Closure" works under the hood, with a link to the surrounding lexical context. We saw that scope wise, it doesn't matter when or where we are running our functions but where we are defining them, in other words: Lexical (static) binding. When we return a function, we actually returning not only the function but attach to it the entire lexical variable environment of all surrounding contexts (which browsers optimize and attach only referenced variables). This gives us the ability to create stateful functions with shared data across executions, it also allows us to create "private" variables that our global execution context doesn't have access to.
+
+Hope you found this article helpful, if you have something to add or any suggestions or feedbacks I would love to hear about them, you can tweet or DM me [@sag1v](https://mobile.twitter.com/sag1v). 🤓
