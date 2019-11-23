@@ -88,7 +88,7 @@ Lexical Scope is basically a fancy way of saying "Static Scope", meaning we know
 Read this carefully:
 > **WHERE** you define your function, determines what variables the function have access to **WHEN** it gets called.
 
-In other words, id doesn't matter where and how you invoke the function, its all about where did it got declared.
+In other words, it doesn't matter where and how you invoke the function, its all about where did it got declared.
 
 But how do we declare a function in one place, and invoke it in another place? Well, we can create a function within a function and return it:
 
