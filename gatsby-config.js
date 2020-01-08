@@ -1,9 +1,28 @@
+const author = 'Sagiv Ben Giat';
+const motto = 'Code, Thoughts & Opinions';
+
 module.exports = {
   siteMetadata: {
-    title: `debuggr.io`,
-    author: `Sagiv Ben Giat`,
+    siteName: 'debuggr.io',
+    title: `${motto} - By ${author}`,
+    author,
     description: `A Personal blog by Sagiv Ben Giat`,
-    motto: 'Code, Thoughts & Opinions',
+    keywords: [
+      'javascript',
+      'react',
+      'hooks',
+      'frontend',
+      'webdev',
+      'nodejs',
+      'programming',
+      'closure',
+      'this',
+      'prototype',
+      'oop',
+      'functional',
+      'sagiv ben giat'
+    ],
+    motto,
     siteUrl: `https://debuggr.io`,
     indexImage: '/images/debuggrLogo.png', // from static folder
     social: {

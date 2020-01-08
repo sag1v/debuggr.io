@@ -32,7 +32,7 @@ class BlogPostTemplate extends React.Component {
     const post = data.markdownRemark
     const { frontmatter } = post;
 
-    const siteTitle = data.site.siteMetadata.title
+    const siteTitle = data.site.siteMetadata.siteName
     const { previous, next } = pageContext
     const featuredImgFluid = frontmatter.featuredImage && frontmatter.featuredImage.childImageSharp.fluid;
     const imageSrc = frontmatter.featuredImage && frontmatter.featuredImage.childImageSharp.fluid.src;
@@ -122,7 +122,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {
-        title
+        siteName
         author
       }
     }

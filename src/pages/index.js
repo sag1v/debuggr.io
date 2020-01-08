@@ -66,11 +66,11 @@ function PreviewItem({ node }) {
 class BlogIndex extends React.Component {
   render() {
     const { data } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
+    const siteTitle = data.site.siteMetadata.siteName;
     const posts = data.allMarkdownRemark.edges;
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="debuggr.io" />
+        <SEO title={siteTitle} />
         <Bio />
         {posts.map(({ node }) => (
           <PreviewItem key={node.fields.slug} node={node} />
@@ -87,7 +87,7 @@ export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
-        title
+        siteName
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {

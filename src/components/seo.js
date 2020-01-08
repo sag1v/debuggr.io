@@ -18,6 +18,7 @@ function SEO({ description, lang, meta, title, image }) {
           siteMetadata {
             title
             description
+            keywords
             author
             siteUrl,
             indexImage
@@ -43,6 +44,10 @@ function SEO({ description, lang, meta, title, image }) {
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          name: "keywords",
+          content: site.siteMetadata.keywords.join(",")
         },
         {
           property: `og:image`,

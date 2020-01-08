@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 class NotFoundPage extends React.Component {
   render() {
     const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
+    const siteTitle = data.site.siteMetadata.siteName
     const posts = data.allMarkdownRemark.edges;
 
     return (
@@ -49,7 +49,7 @@ export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
-        title
+        siteName
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
