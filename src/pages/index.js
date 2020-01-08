@@ -11,20 +11,17 @@ import Subscribe from '../components/Subscribe';
 function Thumbnail(props) {
   return (
     <Img
-      fixed={props.fixed}
-      style={{
-        minWidth: '200px',
-        marginLeft: 'auto',
-      }}
+      className="index-item-image"
+      fluid={props.fluid}
     />
   );
 }
 
 function PreviewItem({ node }) {
   const title = node.frontmatter.title || node.fields.slug;
-  const featuredImgFixed =
+  const featuredImgFluid =
     node.frontmatter.featuredImage &&
-    node.frontmatter.featuredImage.childImageSharp.fixed;
+    node.frontmatter.featuredImage.childImageSharp.fluid;
 
   return (
     <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
@@ -60,7 +57,7 @@ function PreviewItem({ node }) {
             />
           </section>
         </article>
-        {featuredImgFixed && <Thumbnail fixed={featuredImgFixed} />}
+        {featuredImgFluid && <Thumbnail fluid={featuredImgFluid} />}
       </div>
     </Link>
   );
@@ -107,8 +104,8 @@ export const pageQuery = graphql`
             description
             featuredImage {
               childImageSharp {
-                fixed(width: 200, height: 150) {
-                  ...GatsbyImageSharpFixed
+                fluid(maxWidth: 650) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
