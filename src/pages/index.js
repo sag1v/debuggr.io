@@ -70,9 +70,7 @@ class BlogIndex extends React.Component {
   render() {
     const { data } = this.props;
     const siteTitle = data.site.siteMetadata.title;
-    //const indexImage = data.site.indexImage;
     const posts = data.allMarkdownRemark.edges;
-    console.log(img);
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="debuggr.io" />

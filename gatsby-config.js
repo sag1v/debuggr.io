@@ -5,6 +5,7 @@ module.exports = {
     description: `A Personal blog by Sagiv Ben Giat`,
     motto: 'Code, Thoughts & Opinions',
     siteUrl: `https://debuggr.io`,
+    indexImage: '/images/debuggrLogo.png', // from static folder
     social: {
       twitter: `sag1v`,
       github: 'sag1v',
