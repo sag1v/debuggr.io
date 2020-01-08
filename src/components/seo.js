@@ -31,7 +31,7 @@ function SEO({ description, lang, meta, title, image }) {
   const metaDescription = description || site.siteMetadata.description;
   const ticks = new Date().getTime();
   const ogImageUrl =
-    site.siteMetadata.siteUrl + (image || site.siteMetadata.indexImage) + `?cache=${ticks}`;
+    site.siteMetadata.siteUrl + (image || site.siteMetadata.indexImage) + `?force=${ticks}`;
 
   return (
     <Helmet
