@@ -33,6 +33,8 @@ function SEO({ description, lang, meta, title, image }) {
   const ogImageUrl =
     site.siteMetadata.siteUrl + (image || site.siteMetadata.indexImage) + `?force=${ticks}`;
 
+  const computedTitle = title || site.siteMetadata.title;
+
   return (
     <Helmet
       htmlAttributes={{
@@ -63,7 +65,7 @@ function SEO({ description, lang, meta, title, image }) {
         },
         {
           property: `og:title`,
-          content: site.siteMetadata.title,
+          content: computedTitle,
         },
         {
           property: `og:description`,
@@ -83,7 +85,7 @@ function SEO({ description, lang, meta, title, image }) {
         },
         {
           name: `twitter:title`,
-          content: site.siteMetadata.title,
+          content: computedTitle,
         },
         {
           name: `twitter:description`,
