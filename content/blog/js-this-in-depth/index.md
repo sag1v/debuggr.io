@@ -2,7 +2,7 @@
 title: JavaScript - The "this" key word in depth
 date: "2019-08-21"
 featuredImage: ./cover.png
-description: Follow these 5 rules to determine what “this” is bound to.
+description: Follow these 6 rules to determine what “this” is bound to.
 tags: javascript, webdev, node, frontend
 ---
 
@@ -114,10 +114,10 @@ Lets walk them through:
 If the relevant execution context is created by an arrow function then do nothing, meaning `this` will be whatever it was set by the wrapping execution context.
 2. **Was the function called with [`new`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new)?** - 
 When invoking a function with the `new` key word the engine will do some things for us:
-  * Create a new object and set `this` to reference it.
-  * Reference that object's `__proto__` (called `[[Prototype]]` in the [spec](https://www.ecma-international.org/ecma-262/10.0/index.html#sec-ordinary-object-internal-methods-and-internal-slots)) to 
-    the [function's `prototype` object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype).
-  * Return the newly created object (`this`).
+    * Create a new object and set `this` to reference it.
+    * Reference that object's `__proto__` (called `[[Prototype]]` in the [spec](https://www.ecma-international.org/ecma-262/10.0/index.html#sec-ordinary-object-internal-methods-and-internal-slots)) to 
+    the [function's prototype object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype).
+    * Return the newly created object (`this`).
 
     So for our purpose to determine what `this` is, we know it will be a new object that was created automatically just by invoking the function with the `new` key word.
 3. **Was the function called with [`call`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) / [`apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) or [`bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind)?** -
