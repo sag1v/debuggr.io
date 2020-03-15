@@ -67,9 +67,9 @@ Lets revisit our flow-chart from the [JavaScript - The "this" key word in depth]
 
 Although there is no "event handlers" flow, we can place them under the "dot notation" or "object's member".
 
-You can look at event handlers that are attached to DOM elements as if the function is a method inside the element’s object, in our case the `button` object. We can look at it as if we did button.click() or even btn.countUp(). Note that this is not exactly whats going on under the hood, but this visualization of the invocation of the handler can help us with the formation of our “mental model” regarding the setting of this. You can read more about it on the [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this#As_a_DOM_event_handler).
+You can look at event handlers that are attached to DOM elements as if the function is a method inside the element’s object, in our case the `button` object. We can look at it as if we did `button.click()` or even button.countUp(). Note that this is not exactly whats going on under the hood, but this visualization of the invocation of the handler can help us with the formation of our “mental model” regarding the setting of `this`. You can read more about it on the [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this#As_a_DOM_event_handler).
 
-So what is this in our case? Lets walk through the flow:
+So what is `this` pointing to in our case? Lets walk through the flow:
 
 - Is countUp an arrow function? - No.
 - Was countUp called with new? - No.
@@ -80,7 +80,7 @@ This is why we have an error, because the `button` element does not have any `se
 
 ## Possible solutions
 
-### bind
+### #1 bind
 
 One possible solution is to use `bind` and return a new function with an explicit `this` reference:
 
@@ -108,7 +108,7 @@ class App extends React.Component {
 }
 ```
 
-This works great and we don't get any errors, although we are creating and passing a new function on each render cycle [which may have performance implications](https://reactjs.org/docs/faq-functions.html#bind-in-render) (and might not).
+This works great and we don't get any errors, although we are creating and passing a new function on each render cycle [which may have performance implications](https://reactjs.org/docs/faq-functions.html#bind-in-render) (or might not).
 
 We can use `bind` in the constructor which will run only once for the entire life-time of the component.
 
@@ -149,11 +149,11 @@ So why is using `bind` works for us? Lets walk through the flow again:
 
 Meaning, our `this` will reference whatever we pass to `bind`, which is the class instance.
 
-### Arrow function
+### #2 Arrow function
 
 Instead of manually dealing with the `this` reference and passing it via `bind`, we can let the language / engine do it for us.
 
-When using arrow functions, the engine will not "mutate" the `this` reference and will leave it as is, meaning whatever the `this` is pointing to at the current execution context.
+When using arrow functions, the engine will not "mutate" the `this` reference and will leave it as is, meaning whatever the `this` is pointing to at the wrapping execution context.
 
 ```jsx{17}
 class App extends React.Component {
@@ -188,7 +188,7 @@ So lets walk through the flow again:
 - Was countUp called with call / apply / bind? - No.
 - Was countUp called as an object method? - Yes, `this` is the object left to the dot - The auto created object inside `App` in this case (the instance).
 
-While this works great, we are again passing a new function on each render cycle, although it won't create any issue most of the time you might want to create this function once. We can do that with [class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Class_fields#Public_instance_fields) - Note that at the time this article was written, class fields are a proposal in stage 3.
+While this works great, we are again passing a new function on each render cycle, although it won't create any issues most of the time, you might want to create this function once. We can do that with [class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Class_fields#Public_instance_fields) - Note that at the time this article was written, class fields are a proposal on stage 3.
 
 ```jsx{7,17}
 class App extends React.Component {
@@ -244,6 +244,6 @@ Now back to our `this`, why does it work with arrow functions? Lets walk through
 
 ## Wrapping up
 
-Make sure you don't "lose" the context of `this` in your handlers, either explicit pass it with `bind` (inline or override in constructor) or use and arrow function (inline or class field) that won't mutate and change the reference of `this` when it gets called.
+Make sure you don't "lose" the context of `this` in your handlers, either explicit pass it with `bind` (inline or override in constructor) or use an arrow function (inline or class field) that won't mutate and change the reference of `this` when it gets called.
 
 I hope it was informative and helpful, if you have any further clarifications or corrections, feel free to comment or DM me on twitter ([@sag1v](https://twitter.com/sag1v)). 🤓
