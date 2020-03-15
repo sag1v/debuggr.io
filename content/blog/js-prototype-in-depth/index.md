@@ -352,7 +352,7 @@ function Player(username, score){
 }
 ```
 
-Again, for an in depth explanation about the `this` key word you can read [JavaScript - The "this" key word in depth](http://localhost:8000/js-this-in-depth/).
+Again, for an in depth explanation about the `this` key word you can read [JavaScript - The "this" key word in depth](https://www.debuggr.io/js-this-in-depth/).
 
 ## Class
 

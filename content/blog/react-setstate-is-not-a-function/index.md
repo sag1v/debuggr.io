@@ -14,8 +14,8 @@ TL;DR - If you are not in the mode for reading or you just want the bottom line,
 
 #### Prerequisite -
 
-- We are going to mention the `this` context quite a lot here, if you are not exactly sure on how `this` works, i strongly advice reading [JavaScript - The "this" key word in depth](http://localhost:8000/js-this-in-depth/) first.
-- We are also going to touch a little bit on the prototype chain subject, if you are not exactly sure how it works or not sure how classes works under the hood, i strongly advice reading [JavaScript - The prototype chain in depth](http://localhost:8000/js-prototype-in-depth/).
+- We are going to mention the `this` context quite a lot here, if you are not exactly sure on how `this` works, i strongly advice reading [JavaScript - The "this" key word in depth](https://www.debuggr.io/js-this-in-depth/) first.
+- We are also going to touch a little bit on the prototype chain subject, if you are not exactly sure how it works or not sure how classes works under the hood, i strongly advice reading [JavaScript - The prototype chain in depth](https://www.debuggr.io/js-prototype-in-depth/).
 
 ---
 
@@ -61,7 +61,7 @@ The real problem here, is that we "lost" the context of `this` inside that handl
 
 What is the context of `this` in our case then?
 
-Lets revisit our flow-chart from the [JavaScript - The "this" key word in depth](http://localhost:8000/js-this-in-depth/#the-flow-chart) article:
+Lets revisit our flow-chart from the [JavaScript - The "this" key word in depth](https://www.debuggr.io/js-this-in-depth/#the-flow-chart) article:
 
 ![this-flow-chart](https://www.debuggr.io/static/f0e49d9509fa837ca7322cedf793be6a/4815e/the-this-flow-chart.png)
 
@@ -139,7 +139,7 @@ class App extends React.Component {
 
 This way, we are "overriding" the class method with an instance method, meaning we are not using the `countUp` method attached to the `App.prototype` but creating a method directly on the instance returned by `App`.
 
-*If you are not sure you fully understand how the prototype chain works under the hood, or not sure how classes works under the hood, i strongly recommend reading the [JavaScript - The prototype chain in depth](http://localhost:8000/js-prototype-in-depth/) article*
+*If you are not sure you fully understand how the prototype chain works under the hood, or not sure how classes works under the hood, i strongly recommend reading the [JavaScript - The prototype chain in depth](https://www.debuggr.io/js-prototype-in-depth/) article*
 
 So why is using `bind` works for us? Lets walk through the flow again:
 
