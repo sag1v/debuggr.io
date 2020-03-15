@@ -101,8 +101,10 @@ function foo(){
   // who knows? we need to see where and how it runs
 }
 ```
+
 Seems a bit cumbersome and complex, maybe this flow chart will provide a better visualization:
 
+#### The flow chart
 ![the this flow chart](./the-this-flow-chart.png)
 
 As you can see we can split the flow into two parts:
@@ -305,7 +307,7 @@ const myObj = {
 myObj.logThis()
 ```
 
-Result - `myObj`.
+Result - `myObj`.  
 Explanation:
 * Is `logThis` an arrow function? - No.
 * Was `logThis` called with `new`? - No.
@@ -478,7 +480,7 @@ const myObj = { name: 'sagiv' };
 const myClassInstance = new myClass()
 myClassInstance.logThis.call(myObj)
 ```
-Result - The object created by `myClass`.
+Result - The object created by `myClass`.  
 Explanation:
 * Is `logThis` an arrow function? - Yes, `this` refers to whatever the wrapping context set it, `myClass` in this case.
 Lets check what `this` refers to in the wrapping context:
@@ -496,8 +498,9 @@ function logThis() {
 const btn = document.getElementById('btn');
 btn.addEventListener('click', logThis);
 ```
-Result - The `btn` element.
-Explanation
+
+Result - The `btn` element.  
+Explanation:  
 This is a tricky question because we never talked about event handlers attached to `DOM` elements. You can look at event handlers that are attached to `DOM` elements as if the function is a method inside the element's object, In our case the `btn` object. We can look at it as if we did `btn.click()` or even `btn.logThis()`. Note that this is not exactly whats going on under the hood, but this visualization of the invocation of the handler can help us with the formation of our "mental model" regarding the setting of `this`. 
 You can read more about it on the [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this#As_a_DOM_event_handler)
 
@@ -528,4 +531,4 @@ We now understand that the assignment of `this` can be both dynamic and static (
 
 It may look intimidating and complex now, you probably thinking how would you remember the flow chart. Well you don't need to, you can save or print this flow-chart or maybe even make your own. Every time you need to know what `this` refers to in your code just look at it and start going through the conditions. Rest assure, you will need to look at this flow-chart less and less as time goes by.
 
-I hope it was informative and helpful, if you have any further clarifications or corrections, feel free to comment or DM me on twitter ([@sag1v](https://twitter.com/sag1v)). 
+I hope it was informative and helpful, if you have any further clarifications or corrections, feel free to comment or DM me on twitter ([@sag1v](https://twitter.com/sag1v)). 🤓

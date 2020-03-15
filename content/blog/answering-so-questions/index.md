@@ -86,4 +86,4 @@ As you can see, there are a lot of reasons that should motivate you to be active
 While some are for your own personal benefit and some can benefit your environment, all of them are eventually rewarding and satisfying.
 With that said, make sure it doesn't interrupt your job or daily tasks. What works for me is to allocate a specific time for that within my free time and make sure I don't exceed it.
 
-I hope this was a good read and if you have any more "motivation items" to add to the list or any feedback please share, I would love to read it.
+I hope this was a good read and if you have any more "motivation items" to add to the list or any feedback please share, I would love to read it. 🤓

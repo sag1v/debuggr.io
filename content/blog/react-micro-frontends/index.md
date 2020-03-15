@@ -811,7 +811,7 @@ We observed on how we can interact with a separate and isolated react applicatio
 As i mentioned at the top, this may solve a specific problem, this is not the “normal” way we write our applications, but it’s good to know we can do that when we need it thanks to the flexible and solid API of `react` and `ReactDOM`.
 
 Thank you for your patience, I hope it helped you in some way.  
-If you have any comments / suggestions or questions, please feel free to reach me at twitter [@sag1v](https://twitter.com/sag1v).
+If you have any comments / suggestions or questions, please feel free to reach me at twitter [@sag1v](https://twitter.com/sag1v). 🤓
 
 I would love to see some examples of this approach with other frameworks, take the bundled files of the counter-app and interact with other frameworks / libraries.
 

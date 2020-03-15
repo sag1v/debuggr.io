@@ -13,6 +13,7 @@ If you are a react developer, there is a good chance that you faced this error c
 TL;DR - If you are not in the mode for reading or you just want the bottom line, then [here it is](#wrapping-up)
 
 ## The problem
+
 In order to understand what are the possible solutions, lets first understand what is the exact issue here.
 
 Consider this code block:
