@@ -369,7 +369,54 @@ function Pets() {
 }
 ```
 
+### Custom useEffect
+
+If we want to get real crazy with our hooks, we can create our own custom `useEffect` (or `useLayoutEffect`) which will provide us the "current status" of the effect:
+
+```jsx
+function useAbortableEffect(effect, dependencies) {
+  const status = {}; // mutable status object
+  useEffect(() => {
+    status.aborted = false;
+    // pass the mutuable object to the effect callback
+    // store the returned value for cleanup
+    const cleanUpFn = effect(status);
+    return () => {
+      // mutate the object to signal the consumer
+      // this effect is cleaning up
+      status.aborted = true;
+      if (typeof cleanUpFn === "function") {
+        // run the cleanup function
+        cleanUpFn();
+      }
+    };
+  }, [...dependencies]);
+}
+```
+
+And we will use it in our `Pet` component like this:
+
+```jsx{1, 5}
+  useAbortableEffect((status) => {
+    if (pets.selectedPet) {
+      dispatch({ type: "FETCH_PET" });
+      getPet(pets.selectedPet).then(data => {
+        if(!status.aborted){
+          dispatch({ type: "FETCH_PET_SUCCESS", payload: data });
+        }
+      });
+    } else {
+      dispatch({ type: "RESET" });
+    }
+  }, [pets.selectedPet]);
+```
+
+Note how our custom effect callback now accepts a `status` argument which is an object that contains an `aborted` boolean property. If it is set to `true`, that means our effect got cleaned and re-run (which means our dependencies are changed or the component was un-mounted).
+
+I kind of like this pattern and i wish react `useEffect` would get us this behavior out of the box. I even created an [RFC on the react repo](https://github.com/reactjs/rfcs/issues/137) for this if you want to comment or improve it.
+
 ## Wrapping up
+
 We saw how a simple component with an asynchronous state update may yield this common warning, think about all those components you have with a similar case. Make sure you check if the component is actually mounted before you perform a state update.
 
 Hope you found this article helpful, if you have a different approach or any suggestions i would love to hear about them, you can tweet or DM me [@sag1v](https://mobile.twitter.com/sag1v). 🤓

@@ -122,6 +122,7 @@ As you see, its nothing but a `setTimeout` inside a `Promise`.
 So far everything looks great, we chose a pet type from the Drop-down and we get the info `1000ms` later. Though when we are dealing with asynchronous operations we can't determine at what point of time exactly we are running our code, moreover we need to handle 2 or more operations simultaneously. What happens when the first operation is slower than the second operation? How are we dealing with the results?
 
 Imagine this scenario:
+
 1. The user select the `Cats` option.
 2. We are fetching the `Cats` data from the server.
 3. The user now select the `Dogs` option.
@@ -133,7 +134,6 @@ Imagine this scenario:
 
 This is how it looks like on the screen:
 ![showing the bug, selecting cats then dogs and displaying cats data](./the-race-bug.gif)
-
 
 How did we managed to do it? just a hard-coded longer delay for the `cats` type:
 
@@ -280,13 +280,60 @@ This is another possible solution. Instead of keeping track on the matching valu
 
 This works great and probably the preferred solution for some people, but keep in mind that now your effect can't have other none related logic with none related dependencies in the array (and it shouldn't have!), because then the effect will re-run if those dependencies change and will trigger the cleanup function which will flip the `abort` flag.
 
-Nothing is stopping you from having multiple `useEffect` functions, one for each logic operation. 
+Nothing is stopping you from having multiple `useEffect` functions, one for each logic operation.
 
+### Custom useEffect
+
+If we want to get real crazy with our hooks, we can create our own custom `useEffect` (or `useLayoutEffect`) which will provide us the "current status" of the effect:
+
+```jsx
+function useAbortableEffect(effect, dependencies) {
+  const status = {}; // mutable status object
+  useEffect(() => {
+    status.aborted = false;
+    // pass the mutuable object to the effect callback
+    // store the returned value for cleanup
+    const cleanUpFn = effect(status);
+    return () => {
+      // mutate the object to signal the consumer
+      // this effect is cleaning up
+      status.aborted = true;
+      if (typeof cleanUpFn === "function") {
+        // run the cleanup function
+        cleanUpFn();
+      }
+    };
+  }, [...dependencies]);
+}
+```
+
+And we will use it in our `Pet` component like this:
+
+```jsx{1, 5}
+  useAbortableEffect((status) => {
+    if (pets.selectedPet) {
+      dispatch({ type: "FETCH_PET" });
+      getPet(pets.selectedPet).then(data => {
+        if(!status.aborted){
+          dispatch({ type: "FETCH_PET_SUCCESS", payload: data });
+        }
+      });
+    } else {
+      dispatch({ type: "RESET" });
+    }
+  }, [pets.selectedPet]);
+```
+
+Note how our custom effect callback now accepts a `status` argument which is an object that contains an `aborted` boolean property. If it is set to `true`, that means our effect got cleaned and re-run (which means our dependencies are changed or the component was un-mounted).
+
+I kind of like this pattern and i wish react `useEffect` would get us this behavior out of the box. I even created an [RFC on the react repo](https://github.com/reactjs/rfcs/issues/137) for this if you want to comment or improve it.
 
 ## Good news
+
 Note that this is not a react specific problem, this is a challenge that most if not all of the UI libraries or framework are facing, due to the nature of asynchronous operations and state management. The good news is that the react team is working on a great feature called [Concurrent Mode](https://reactjs.org/docs/concurrent-mode-intro.html) and one of its features is [Suspense](suspense) which should cover this issue out of the box.
 
 ## Wrapping up
+
 We saw that a simple component with a state and asynchronous operation can produce a nasty bug, we might not even know it's there until we face it in production. My conclusion is that whenever we update a state (can be local or in a state manager) inside an asynchronous callback, we must check if the arguments that we passed to the asynchronous function is corresponding to the data we received in the callback.
 
 Hope you found this article helpful, if you have a different approach or any suggestions I would love to hear about them, you can tweet or DM me [@sag1v](https://mobile.twitter.com/sag1v). 🤓
