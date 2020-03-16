@@ -291,7 +291,7 @@ function useAbortableEffect(effect, dependencies) {
   const status = {}; // mutable status object
   useEffect(() => {
     status.aborted = false;
-    // pass the mutuable object to the effect callback
+    // pass the mutable object to the effect callback
     // store the returned value for cleanup
     const cleanUpFn = effect(status);
     return () => {
