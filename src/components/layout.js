@@ -28,7 +28,6 @@ function Layout(props) {
     };
   }, [])
 
-
   const { location, title, children } = props;
   const rootPath = `${__PATH_PREFIX__}/`
   let header
@@ -83,7 +82,9 @@ function Layout(props) {
           </div>
           <DayNightSwitch checked={darkModeOn} onChange={toggleDarkMode} />
         </header>
-        <main>{children}</main>
+        <main>
+          {children}
+        </main>
         <Footer />
       </div>
     </React.Fragment>

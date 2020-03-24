@@ -3,12 +3,13 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
-import ReadingTime from "../components/ReadingTime"
+import ReadingTime from "../components/ReadingTime";
 import ShareButton from '../components/ShareButton';
 import Title from '../components/Title';
-import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
-import Subscribe from "../components/Subscribe"
+import SEO from "../components/seo";
+import { rhythm, scale } from "../utils/typography";
+import Subscribe from "../components/Subscribe";
+import Comments from '../components/Comments';
 const sharePlatforms = ['twitter', 'facebook', 'linkedIn', 'reddit', 'hackernews', 'clipboard'] // clipboard should be last!
 
 const ShareSection = ({ path, postName }) => (
@@ -32,10 +33,20 @@ class BlogPostTemplate extends React.Component {
     const post = data.markdownRemark
     const { frontmatter } = post;
 
+    const { title, featuredImage } = frontmatter;
+
     const siteTitle = data.site.siteMetadata.siteName
-    const { previous, next } = pageContext
-    const featuredImgFluid = frontmatter.featuredImage && frontmatter.featuredImage.childImageSharp.fluid;
-    const imageSrc = frontmatter.featuredImage && frontmatter.featuredImage.childImageSharp.fluid.src;
+    const { previous, next, slug } = pageContext
+    const featuredImgFluid = featuredImage && featuredImage.childImageSharp.fluid;
+    const imageSrc = featuredImage && featuredImage.childImageSharp.fluid.src;
+
+    const disqusConfig = {
+      shortname: process.env.GATSBY_DISQUS_NAME,
+      config: {
+        identifier: slug,
+        title,
+      },
+    }
 
     return (
       <Layout location={location} title={siteTitle}>
@@ -84,33 +95,43 @@ class BlogPostTemplate extends React.Component {
             <Bio />
           </footer>
         </article>
-
-        <nav>
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
-          >
-            <li>
-              {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
-              )}
-            </li>
-          </ul>
-        </nav>
+        <div>
+          <nav>
+            <ul
+              style={{
+                display: `flex`,
+                flexWrap: `wrap`,
+                justifyContent: `space-between`,
+                listStyle: `none`,
+                padding: 0,
+              }}
+            >
+              <li>
+                {previous && (
+                  <div>
+                    <div>← Previous article</div>
+                    <Link to={previous.fields.slug} rel="prev">
+                      {previous.frontmatter.title}
+                    </Link>
+                  </div>
+                )}
+              </li>
+              <li>
+                {next && (
+                  <div>
+                    <div>Next article →</div>
+                    <Link to={next.fields.slug} rel="next">
+                      {next.frontmatter.title}
+                    </Link>
+                  </div>
+                )}
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div>
+          <Comments {...disqusConfig} />
+        </div>
       </Layout>
     )
   }
