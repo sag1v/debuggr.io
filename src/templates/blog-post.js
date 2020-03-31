@@ -87,7 +87,6 @@ class BlogPostTemplate extends React.Component {
             }}
           />
           <ShareSection path={`${location.pathname}${location.search}`} postName={frontmatter.title} />
-          <Subscribe />
           <footer>
             <h3>
               <Title>{siteTitle}</Title>
@@ -130,6 +129,7 @@ class BlogPostTemplate extends React.Component {
           </nav>
         </div>
         <div>
+          <Subscribe />
           <Comments {...disqusConfig} />
         </div>
       </Layout>
