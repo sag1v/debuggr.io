@@ -526,7 +526,7 @@ const paidPlayerFunctions = {
   }
 }
 
-// link paidPlayerFunctions object to createPlayer object
+// link paidPlayerFunctions object to playerFunctions object
 Object.setPrototypeOf(paidPlayerFunctions, playerFunctions);
 
 function createPaidPlayer(userName, score, balance) {
