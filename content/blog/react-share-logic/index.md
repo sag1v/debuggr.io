@@ -51,6 +51,8 @@ So basically we want to extract the `state` and the `onMouseMove` handler.
 
 Since the beginning of time (or at least since [october 2013](https://github.com/facebook/react/blob/master/CHANGELOG.md#050-october-16-2013)), `mixins` were a way to share logic across components. It was fairly easy to use:
 
+<sub><sup>You can use the [create-react-class](https://www.npmjs.com/package/create-react-class) library instead of using an old version of `react`.</sub></sup>
+
 ```jsx{1-12,15}
 const mouseMoveMixin = {
   getInitialState() {
