@@ -326,7 +326,7 @@ And we will use it in our `Pet` component like this:
 
 Note how our custom effect callback now accepts a `status` argument which is an object that contains an `aborted` boolean property. If it is set to `true`, that means our effect got cleaned and re-run (which means our dependencies are changed or the component was un-mounted).
 
-I kind of like this pattern and i wish react `useEffect` would get us this behavior out of the box. I even created an [RFC on the react repo](https://github.com/reactjs/rfcs/issues/137) for this if you want to comment or improve it.
+I kind of like this pattern and i wish react `useEffect` would get us this behavior out of the box. I even created an [RFC on the react repo](https://github.com/reactjs/rfcs/pull/202) for this if you want to comment, improve it or just up-vote with a like so it will have a better chance to get implemented.
 
 ## Good news
 
